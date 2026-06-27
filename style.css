@@ -433,7 +433,16 @@ footer{border-top:1px solid var(--bdr);padding:1.75rem 2rem}
   font-size:clamp(2.25rem,5.5vw,3.75rem);font-weight:900;
   letter-spacing:-.04em;line-height:1;margin-bottom:1.5rem;
 }
-.d-tags{display:flex;gap:.35rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.d-author-row{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem;
+}
+.d-author{
+  display:flex;align-items:center;gap:.5rem;
+}
+.d-author .author-dots{display:flex;gap:.1rem}
+.d-author-name{font-size:.85rem;font-weight:700;color:var(--dim)}
+.d-tags{display:flex;gap:.35rem;flex-wrap:wrap}
 .d-links{display:flex;gap:.55rem;flex-wrap:wrap;margin-bottom:3rem}
 .d-hero-img{
   width:100%;display:block;border-radius:var(--r);
@@ -478,6 +487,77 @@ footer{border-top:1px solid var(--bdr);padding:1.75rem 2rem}
 .rv{opacity:0;transform:translateY(20px);transition:opacity .55s var(--ease),transform .55s var(--ease)}
 .rv.v{opacity:1;transform:none}
 
+/* ── HERO DUO ── */
+.hero-duo{
+  display:flex;align-items:center;gap:1.25rem;
+  justify-content:center;margin-bottom:3.5rem;
+  animation:fadeIn .6s var(--ease) .5s both;
+}
+.duo-card{
+  display:flex;align-items:center;gap:.75rem;
+  padding:.7rem 1.1rem .7rem .7rem;
+  background:var(--glass);backdrop-filter:blur(var(--glass-b));
+  border:1px solid var(--bdr);border-radius:14px;
+  transition:border-color .2s;
+}
+.duo-card:hover{border-color:var(--bdr-h)}
+.duo-avatar{
+  width:40px;height:40px;border-radius:11px;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:1rem;color:#fff;flex-shrink:0;
+  box-shadow:0 4px 16px rgba(0,0,0,.3);
+}
+.duo-name{font-size:.88rem;font-weight:700;line-height:1.2}
+.duo-role{font-size:.7rem;color:var(--dim2);font-weight:500}
+.duo-sep{font-size:1.1rem;color:var(--dim2);font-weight:300}
+
+/* ── FILTER ROW ── */
+.filter-row{display:flex;flex-direction:column;gap:.4rem;align-items:flex-end}
+
+/* ── CARD AUTHOR ── */
+.card-author{
+  display:flex;align-items:center;gap:.45rem;
+}
+.author-dots{display:flex;gap:-.15rem;align-items:center}
+.author-label{font-size:.65rem;font-weight:600;color:var(--dim2)}
+
+/* ── TEAM ── */
+#team{padding:6rem 0;border-top:1px solid var(--bdr)}
+
+.team-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:1rem;
+  margin-top:2.5rem;
+}
+
+.team-card{
+  background:var(--glass);backdrop-filter:blur(var(--glass-b));
+  border:1px solid var(--bdr);border-radius:22px;
+  padding:2rem;
+  transition:border-color .25s var(--ease),box-shadow .25s var(--ease),transform .25s var(--ease);
+}
+.team-card:hover{
+  border-color:var(--bdr-h);
+  box-shadow:0 20px 60px rgba(0,0,0,.4);
+  transform:translateY(-4px);
+}
+
+.tc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}
+.tc-avatar{
+  width:56px;height:56px;border-radius:16px;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:900;font-size:1.35rem;color:#fff;
+  box-shadow:0 8px 24px rgba(0,0,0,.35);
+}
+.tc-badge{
+  padding:.22rem .65rem;border-radius:8px;
+  font-size:.65rem;font-weight:700;letter-spacing:.04em;
+  text-transform:uppercase;border:1px solid;
+}
+.tc-name{font-size:1.35rem;font-weight:800;letter-spacing:-.02em;margin-bottom:.15rem}
+.tc-role{font-size:.82rem;color:var(--dim);font-weight:500;margin-bottom:.85rem}
+.tc-bio{font-size:.88rem;color:var(--dim);line-height:1.7;margin-bottom:1.25rem}
+.tc-skills{display:flex;gap:.3rem;flex-wrap:wrap}
+
 /* ── RESPONSIVE ── */
 @media(max-width:900px){
   .bento{grid-template-columns:1fr 1fr}
@@ -485,6 +565,7 @@ footer{border-top:1px solid var(--bdr);padding:1.75rem 2rem}
   .bento .card:nth-child(n){grid-column:span 1}
   .bento .card:nth-child(5),.bento .card:nth-child(6){grid-column:span 1}
   .about-layout{grid-template-columns:1fr;gap:3rem}
+  .team-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:640px){
   header{top:8px;width:calc(100% - 1rem)}
@@ -501,4 +582,9 @@ footer{border-top:1px solid var(--bdr);padding:1.75rem 2rem}
   .pnav{grid-template-columns:1fr}
   .nav-right a:not(.contact-btn){display:none}
   .foot-row{flex-direction:column;gap:.75rem;text-align:center}
+  .team-grid{grid-template-columns:1fr}
+  .hero-duo{flex-direction:column;gap:.75rem}
+  .duo-sep{display:none}
+  .filter-row{align-items:stretch}
+  .sec-top{flex-direction:column;align-items:stretch}
 }

@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Proje — Portfolio</title>
+  <title>Proje — M&A Studio</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23a855f7'/><text x='50%25' y='55%25' text-anchor='middle' dy='.35em' font-size='18' fill='white' font-weight='bold'>M</text></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23a855f7'/><text x='50%25' y='55%25' text-anchor='middle' dy='.35em' font-size='12' fill='white' font-weight='bold'>M%26A</text></svg>" />
 </head>
 <body>
 
@@ -15,12 +15,12 @@
   <header>
     <nav class="nav-bar">
       <a class="logo" href="index.html">
-        <div class="logo-icon">M</div>
-        portfolio
+        <div class="logo-icon">M&A</div>
+        studio
       </a>
       <div class="nav-right">
         <a href="index.html#projects">Projeler</a>
-        <a href="index.html#about">Hakkımda</a>
+        <a href="index.html#team">Ekip</a>
         <a href="index.html#contact" class="contact-btn">İletişim</a>
       </div>
     </nav>
@@ -32,8 +32,8 @@
 
   <footer>
     <div class="foot-row">
-      <a class="foot-logo" href="index.html"><div class="logo-icon">M</div>portfolio</a>
-      <span class="foot-txt">© 2024 — Tasarlandı & kodlandı</span>
+      <a class="foot-logo" href="index.html"><div class="logo-icon" style="font-size:.45rem">M&A</div>studio</a>
+      <span class="foot-txt">© 2024 — Mehmet & Ahmet</span>
     </div>
   </footer>
 
@@ -49,26 +49,43 @@
       dp.innerHTML = `<a class="back" href="index.html">← Geri Dön</a><p style="color:var(--dim)">Proje bulunamadı.</p>`;
       return;
     }
-    document.title = `${p.title} — Portfolio`;
+    document.title = `${p.title} — M&A Studio`;
 
+    const info = getAuthorInfo(p.author);
     const prev = idx > 0 ? projects[idx - 1] : null;
     const next = idx < projects.length - 1 ? projects[idx + 1] : null;
+
+    const authorDots = info.colors.map(c =>
+      `<span style="width:10px;height:10px;border-radius:50%;background:${c};display:inline-block;border:2px solid rgba(0,0,0,.3)"></span>`
+    ).join('');
 
     dp.innerHTML = `
       <a class="back" href="index.html">← Tüm Projelere</a>
       <span class="d-cat">${p.category}</span>
       <h1 class="d-h1">${p.title}</h1>
-      <div class="d-tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+
+      <div class="d-author-row">
+        <div class="d-author">
+          <div class="author-dots">${authorDots}</div>
+          <span class="d-author-name">${info.label}</span>
+        </div>
+        <div class="d-tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+      </div>
+
       <div class="d-links">
         <a class="btn btn-fill" href="${p.live}" target="_blank">Canlıya Bak ↗</a>
         <a class="btn btn-ring" href="${p.github}" target="_blank">GitHub →</a>
       </div>
+
       <img class="d-hero-img" src="${p.image}" alt="${p.title}">
+
       <p class="d-text">${p.longDescription}</p>
+
       <div class="d-feats">
         <h2>Özellikler</h2>
         <ul>${p.features.map(f => `<li>${f}</li>`).join('')}</ul>
       </div>
+
       <div class="pnav">
         ${prev ? `<a class="pnav-card prev" href="project.html?id=${prev.id}">
           <div class="pnav-dir">← Önceki</div>

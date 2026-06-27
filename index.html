@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio — Full Stack Developer</title>
-  <meta name="description" content="Full stack geliştirici portfolio sitesi." />
+  <title>M&A Studio — Yazılım Geliştirme</title>
+  <meta name="description" content="Mehmet & Ahmet — Full stack yazılım geliştirme stüdyosu." />
   <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23a855f7'/><text x='50%25' y='55%25' text-anchor='middle' dy='.35em' font-size='18' fill='white' font-weight='bold'>M</text></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23a855f7'/><text x='50%25' y='55%25' text-anchor='middle' dy='.35em' font-size='12' fill='white' font-weight='bold'>M%26A</text></svg>" />
 </head>
 <body>
 
@@ -17,12 +17,12 @@
   <header>
     <nav class="nav-bar">
       <a class="logo" href="index.html">
-        <div class="logo-icon">M</div>
-        portfolio
+        <div class="logo-icon">M&A</div>
+        studio
       </a>
       <div class="nav-right">
         <a href="#projects">Projeler</a>
-        <a href="#about">Hakkımda</a>
+        <a href="#team">Ekip</a>
         <a href="#contact" class="contact-btn">İletişim</a>
       </div>
     </nav>
@@ -35,22 +35,41 @@
 
       <div class="hero-tag">
         <span class="pulse"></span>
-        Yeni projelere açığım
+        Yeni projelere açığız
       </div>
 
       <h1>
-        <span class="gr-violet">Geliştirici,</span><br>
-        <span class="gr-rose">Tasarımcı.</span>
+        <span class="gr-violet">İki kardeş,</span><br>
+        <span class="gr-rose">bir takım.</span>
       </h1>
 
       <p class="hero-desc">
-        Hızlı, erişilebilir ve kullanıcıların sevdiği dijital
-        ürünler inşa ediyorum. İşte bazı çalışmalarım.
+        Biz Mehmet & Ahmet. Frontend'den backend'e, fikirden ürüne —
+        birlikte dijital çözümler üretiyoruz.
       </p>
 
       <div class="hero-cta">
         <a class="btn btn-fill" href="#projects">Projeleri Gör ↓</a>
         <a class="btn btn-ring" href="#contact">İletişime Geç</a>
+      </div>
+
+      <!-- Two avatars -->
+      <div class="hero-duo">
+        <div class="duo-card rv">
+          <div class="duo-avatar" style="background:linear-gradient(135deg,#a855f7,#7c3aed)">M</div>
+          <div>
+            <div class="duo-name">Mehmet</div>
+            <div class="duo-role">Frontend Developer</div>
+          </div>
+        </div>
+        <div class="duo-sep">×</div>
+        <div class="duo-card rv">
+          <div class="duo-avatar" style="background:linear-gradient(135deg,#3b82f6,#1d4ed8)">A</div>
+          <div>
+            <div class="duo-name">Ahmet</div>
+            <div class="duo-role">Backend Developer</div>
+          </div>
+        </div>
       </div>
 
       <div class="hero-stats">
@@ -70,69 +89,74 @@
             <div class="sec-tag">projeler</div>
             <h2 class="sec-h2">Seçili Çalışmalar</h2>
           </div>
-          <div class="pills rv">
-            <button class="pill on" data-f="all">Tümü</button>
-            <button class="pill" data-f="Web">Web</button>
-            <button class="pill" data-f="Mobil">Mobil</button>
-            <button class="pill" data-f="Full Stack">Full Stack</button>
+          <div class="filter-row rv">
+            <div class="pills">
+              <button class="pill on" data-f="all">Tümü</button>
+              <button class="pill" data-f="Web">Web</button>
+              <button class="pill" data-f="Mobil">Mobil</button>
+              <button class="pill" data-f="Full Stack">Full Stack</button>
+            </div>
+            <div class="pills author-pills">
+              <button class="pill apill on" data-a="all">Herkes</button>
+              <button class="pill apill" data-a="ben">Mehmet</button>
+              <button class="pill apill" data-a="abi">Ahmet</button>
+              <button class="pill apill" data-a="both">Birlikte</button>
+            </div>
           </div>
         </div>
         <div class="bento" id="grid"></div>
       </div>
     </section>
 
-    <!-- ABOUT -->
-    <section id="about">
+    <!-- TEAM -->
+    <section id="team">
       <div class="container">
-        <div class="about-layout">
-          <div class="rv">
-            <div class="sec-tag">hakkımda</div>
-            <h2 class="sec-h2" style="margin-bottom:1.5rem">
-              Merhaba, ben bir<br><span class="gr-violet">full-stack dev.</span>
-            </h2>
-            <p class="a-intro"><strong>3+ yıldır</strong> web ve mobil uygulama geliştiriyorum. Temiz kod, performans ve güçlü kullanıcı deneyimi her zaman önceliğim.</p>
-            <p class="a-intro">Frontend'den backend'e, tasarımdan prod'a kadar geniş bir yelpazede çalışabiliyorum.</p>
-            <div class="timeline">
-              <div class="tl-row">
-                <div class="tl-dot">💼</div>
-                <div><div class="tl-title">Full Stack Geliştirici</div><div class="tl-sub">Freelance · 2022 – Günümüz</div></div>
-              </div>
-              <div class="tl-row">
-                <div class="tl-dot">🎓</div>
-                <div><div class="tl-title">Bilgisayar Mühendisliği</div><div class="tl-sub">Üniversite · 2019 – 2023</div></div>
-              </div>
-              <div class="tl-row">
-                <div class="tl-dot">⭐</div>
-                <div><div class="tl-title">Açık Kaynak Katkıcı</div><div class="tl-sub">GitHub · 2021 – Günümüz</div></div>
-              </div>
+        <div class="sec-head rv">
+          <div class="sec-tag">ekip</div>
+          <h2 class="sec-h2">Biz Kimiz</h2>
+          <p class="sec-desc">İki kardeş olarak frontend ve backend uzmanlıklarımızı birleştiriyoruz.</p>
+        </div>
+
+        <div class="team-grid">
+
+          <!-- Mehmet -->
+          <div class="team-card rv">
+            <div class="tc-top" style="--accent:#a855f7">
+              <div class="tc-avatar" style="background:linear-gradient(135deg,#a855f7,#7c3aed)">M</div>
+              <div class="tc-badge" style="background:rgba(168,85,247,.1);border-color:rgba(168,85,247,.22);color:#c084fc">Frontend</div>
+            </div>
+            <h3 class="tc-name">Mehmet</h3>
+            <p class="tc-role">Frontend Developer</p>
+            <p class="tc-bio">Kullanıcı arayüzü ve deneyimi konusunda tutkulu. React, Next.js ve modern CSS ile etkileyici arayüzler oluşturuyorum.</p>
+            <div class="tc-skills">
+              <span class="sk-chip">React</span>
+              <span class="sk-chip">Next.js</span>
+              <span class="sk-chip">TypeScript</span>
+              <span class="sk-chip">Tailwind</span>
+              <span class="sk-chip">Vue.js</span>
+              <span class="sk-chip">Figma</span>
             </div>
           </div>
-          <div class="rv">
-            <div class="sk-section">
-              <div class="sk-h">frontend</div>
-              <div class="sk-items">
-                <div class="sk-chip">React</div><div class="sk-chip">Next.js</div>
-                <div class="sk-chip">Vue.js</div><div class="sk-chip">TypeScript</div>
-                <div class="sk-chip">Tailwind</div><div class="sk-chip">Figma</div>
-              </div>
+
+          <!-- Ahmet -->
+          <div class="team-card rv">
+            <div class="tc-top" style="--accent:#3b82f6">
+              <div class="tc-avatar" style="background:linear-gradient(135deg,#3b82f6,#1d4ed8)">A</div>
+              <div class="tc-badge" style="background:rgba(59,130,246,.1);border-color:rgba(59,130,246,.22);color:#60a5fa">Backend</div>
             </div>
-            <div class="sk-section">
-              <div class="sk-h">backend</div>
-              <div class="sk-items">
-                <div class="sk-chip">Node.js</div><div class="sk-chip">Express</div>
-                <div class="sk-chip">PostgreSQL</div><div class="sk-chip">MongoDB</div>
-                <div class="sk-chip">Redis</div><div class="sk-chip">GraphQL</div>
-              </div>
-            </div>
-            <div class="sk-section">
-              <div class="sk-h">devops & tools</div>
-              <div class="sk-items">
-                <div class="sk-chip">Docker</div><div class="sk-chip">AWS</div>
-                <div class="sk-chip">Git</div><div class="sk-chip">CI/CD</div>
-                <div class="sk-chip">React Native</div><div class="sk-chip">Linux</div>
-              </div>
+            <h3 class="tc-name">Ahmet</h3>
+            <p class="tc-role">Backend Developer</p>
+            <p class="tc-bio">Sunucu tarafı mimarisi ve veritabanı tasarımı konusunda uzman. Ölçeklenebilir ve güvenli sistemler inşa ediyorum.</p>
+            <div class="tc-skills">
+              <span class="sk-chip">Node.js</span>
+              <span class="sk-chip">PostgreSQL</span>
+              <span class="sk-chip">Docker</span>
+              <span class="sk-chip">AWS</span>
+              <span class="sk-chip">MongoDB</span>
+              <span class="sk-chip">GraphQL</span>
             </div>
           </div>
+
         </div>
       </div>
     </section>
@@ -145,7 +169,7 @@
           <h2 class="sec-h2 rv">Birlikte çalışalım.</h2>
           <div class="cta-card rv">
             <h3>Bir projen mi var?</h3>
-            <p>Fikrini hayata geçirmek için hazırım. Yaz, konuşalım.</p>
+            <p>Frontend'den backend'e, fikirden ürüne — birlikte çözelim.</p>
             <div class="cta-btns">
               <a class="cb cb-main" href="mailto:mail@example.com">✉ Mail Gönder</a>
               <a class="cb cb-ghost" href="https://github.com" target="_blank">GitHub</a>
@@ -160,29 +184,44 @@
 
   <footer>
     <div class="foot-row">
-      <a class="foot-logo" href="index.html"><div class="logo-icon">M</div>portfolio</a>
-      <span class="foot-txt">© 2024 — Tasarlandı & kodlandı</span>
+      <a class="foot-logo" href="index.html"><div class="logo-icon" style="font-size:.45rem">M&A</div>studio</a>
+      <span class="foot-txt">© 2024 — Mehmet & Ahmet</span>
     </div>
   </footer>
 
   <script src="projects.js"></script>
   <script>
   (() => {
-    // reveal on scroll
     const io = new IntersectionObserver(es => {
       es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('v'); io.unobserve(e.target); } });
     }, { threshold: .1 });
     function observe() { document.querySelectorAll('.rv:not(.v)').forEach(el => io.observe(el)); }
 
-    // render bento cards
-    function render(f) {
+    let catFilter = 'all';
+    let authFilter = 'all';
+
+    function render() {
       const g = document.getElementById('grid');
       g.innerHTML = '';
-      const list = f === 'all' ? projects : projects.filter(p => p.category === f);
+      let list = projects;
+      if (catFilter !== 'all') list = list.filter(p => p.category === catFilter);
+      if (authFilter !== 'all') list = list.filter(p => p.author === authFilter);
+
+      if (list.length === 0) {
+        g.innerHTML = '<p style="color:var(--dim);grid-column:1/-1;text-align:center;padding:3rem 0">Bu filtreyle eşleşen proje yok.</p>';
+        return;
+      }
+
       list.forEach(p => {
+        const info = getAuthorInfo(p.author);
         const a = document.createElement('a');
         a.className = 'card rv';
         a.href = `project.html?id=${p.id}`;
+
+        const dots = info.colors.map(c =>
+          `<span style="width:8px;height:8px;border-radius:50%;background:${c};display:inline-block;border:1.5px solid rgba(0,0,0,.3)"></span>`
+        ).join('');
+
         a.innerHTML = `
           <div class="card-img"><img src="${p.image}" alt="${p.title}" loading="lazy"></div>
           <div class="card-content">
@@ -190,7 +229,10 @@
             <h3 class="card-h">${p.title}</h3>
             <p class="card-p">${p.description}</p>
             <div class="card-bottom">
-              <div class="tags">${p.tags.slice(0,3).map(t => `<span class="tag">${t}</span>`).join('')}</div>
+              <div class="card-author">
+                <div class="author-dots">${dots}</div>
+                <span class="author-label">${info.label}</span>
+              </div>
               <div class="arrow-btn">↗</div>
             </div>
           </div>`;
@@ -199,15 +241,27 @@
       observe();
     }
 
-    document.querySelectorAll('.pill').forEach(b => {
+    // category filters
+    document.querySelectorAll('.pill:not(.apill)').forEach(b => {
       b.addEventListener('click', () => {
-        document.querySelectorAll('.pill').forEach(x => x.classList.remove('on'));
+        document.querySelectorAll('.pill:not(.apill)').forEach(x => x.classList.remove('on'));
         b.classList.add('on');
-        render(b.dataset.f);
+        catFilter = b.dataset.f;
+        render();
       });
     });
 
-    render('all');
+    // author filters
+    document.querySelectorAll('.apill').forEach(b => {
+      b.addEventListener('click', () => {
+        document.querySelectorAll('.apill').forEach(x => x.classList.remove('on'));
+        b.classList.add('on');
+        authFilter = b.dataset.a;
+        render();
+      });
+    });
+
+    render();
     observe();
   })();
   </script>
