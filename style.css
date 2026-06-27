@@ -556,7 +556,31 @@ footer{border-top:1px solid var(--bdr);padding:1.75rem 2rem}
 .tc-name{font-size:1.35rem;font-weight:800;letter-spacing:-.02em;margin-bottom:.15rem}
 .tc-role{font-size:.82rem;color:var(--dim);font-weight:500;margin-bottom:.85rem}
 .tc-bio{font-size:.88rem;color:var(--dim);line-height:1.7;margin-bottom:1.25rem}
-.tc-skills{display:flex;gap:.3rem;flex-wrap:wrap}
+.tc-skills{display:flex;gap:.3rem;flex-wrap:wrap;margin-bottom:1rem}
+.tc-mail{
+  display:inline-flex;align-items:center;gap:.35rem;
+  font-size:.78rem;font-weight:600;color:var(--dim);
+  text-decoration:none;transition:color .15s;
+}
+.tc-mail:hover{color:var(--white)}
+
+/* story */
+.about-story{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;
+  margin-bottom:2.5rem;
+}
+.story-block{
+  padding:1.5rem;border-radius:18px;
+  background:var(--glass);backdrop-filter:blur(var(--glass-b));
+  border:1px solid var(--bdr);
+  transition:border-color .2s;
+}
+.story-block:hover{border-color:var(--bdr-h)}
+.story-h{
+  font-size:.95rem;font-weight:800;letter-spacing:-.02em;
+  margin-bottom:.65rem;
+}
+.story-block p{font-size:.85rem;color:var(--dim);line-height:1.75}
 
 /* ── RESPONSIVE ── */
 @media(max-width:900px){
@@ -583,6 +607,7 @@ footer{border-top:1px solid var(--bdr);padding:1.75rem 2rem}
   .nav-right a:not(.contact-btn){display:none}
   .foot-row{flex-direction:column;gap:.75rem;text-align:center}
   .team-grid{grid-template-columns:1fr}
+  .about-story{grid-template-columns:1fr}
   .hero-duo{flex-direction:column;gap:.75rem}
   .duo-sep{display:none}
   .filter-row{align-items:stretch}
