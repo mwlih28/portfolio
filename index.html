@@ -3,330 +3,234 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio — Yazılım Geliştirici</title>
+  <title>Portfolio — Full Stack Geliştirici</title>
   <meta name="description" content="Modern web ve mobil uygulamalar geliştiren yazılım geliştiricinin portfolio sitesi." />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Custom cursor -->
-  <div id="cursor"></div>
-  <div id="cursor-ring"></div>
-
-  <!-- Loader -->
-  <div id="loader"><div class="loader-logo">dev.</div></div>
-
-  <!-- Background -->
-  <div class="bg-wrap" aria-hidden="true">
-    <div class="bg-grid"></div>
-    <div class="bg-orb bg-orb-1"></div>
-    <div class="bg-orb bg-orb-2"></div>
-    <div class="bg-orb bg-orb-3"></div>
-  </div>
-
-  <!-- Header -->
-  <header id="header">
-    <div class="header-inner">
+  <!-- HEADER -->
+  <header>
+    <div class="nav">
       <a class="logo" href="index.html">
-        <span class="logo-dot"></span>dev.portfolio
+        <div class="logo-sq"></div>
+        dev.portfolio
       </a>
-      <nav>
+      <div class="nav-links">
         <a href="#projects">Projeler</a>
         <a href="#about">Hakkımda</a>
-        <a href="#contact" class="nav-cta">İletişim</a>
-      </nav>
+        <a href="#contact" class="cta">İletişim</a>
+      </div>
     </div>
   </header>
 
-  <main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="hero-inner">
 
-    <!-- ── HERO ── -->
-    <section class="hero">
-
-      <div class="hero-badge">
-        <span class="badge-dot"></span>
+      <div class="avail rev">
+        <span class="avail-dot"></span>
         Müsait — Yeni projelere açığım
       </div>
 
-      <h1 class="hero-title">
-        <span class="word"><span>Kod</span></span>
-        <span class="word"><span>&nbsp;ile</span></span>
-        <span class="word"><span class="g1">&nbsp;tasarlanan</span></span><br/>
-        <span class="word"><span class="g2">&nbsp;gelecek</span></span><span class="word"><span>.</span></span>
+      <h1 class="hero-h1 rev delay-1">
+        Full Stack<br>
+        Web <span class="ac">Dev.</span>
       </h1>
 
-      <p class="hero-sub">
-        Full-stack geliştirici. Hızlı, erişilebilir ve göz alıcı dijital ürünler
-        üretiyorum — kullanıcı deneyimi her zaman önce gelir.
+      <p class="hero-desc rev delay-2">
+        Hızlı, erişilebilir ve kullanıcıların gerçekten sevdiği
+        dijital ürünler geliştiriyorum.
       </p>
 
-      <div class="hero-btns">
-        <a class="btn btn-primary" href="#projects">Projeleri İncele ↓</a>
-        <a class="btn btn-outline" href="#contact">İletişime Geç</a>
+      <div class="hero-btns rev delay-3">
+        <a class="btn btn-ac" href="#projects">Projeleri Gör ↓</a>
+        <a class="btn btn-ghost" href="#contact">İletişime Geç</a>
       </div>
 
-      <div class="hero-stats">
-        <div class="stat-item">
-          <div class="stat-num" data-target="12">0</div>
-          <div class="stat-lbl">Tamamlanan Proje</div>
+      <div class="hero-stats rev">
+        <div class="stat">
+          <div class="stat-n">12<sup>+</sup></div>
+          <div class="stat-l">Tamamlanan Proje</div>
         </div>
-        <div class="stat-item">
-          <div class="stat-num" data-target="3">0</div>
-          <div class="stat-lbl">Yıl Deneyim</div>
+        <div class="stat">
+          <div class="stat-n">3<sup>+</sup></div>
+          <div class="stat-l">Yıl Deneyim</div>
         </div>
-        <div class="stat-item">
-          <div class="stat-num" data-target="8">0</div>
-          <div class="stat-lbl">Mutlu Müşteri</div>
+        <div class="stat">
+          <div class="stat-n">8<sup>+</sup></div>
+          <div class="stat-l">Mutlu Müşteri</div>
         </div>
-        <div class="stat-item">
-          <div class="stat-num" data-target="99">0</div>
-          <div class="stat-lbl">Lighthouse Skoru</div>
+        <div class="stat">
+          <div class="stat-n">100<sup>%</sup></div>
+          <div class="stat-l">Zamanında Teslimat</div>
         </div>
       </div>
 
-      <div class="scroll-hint">
-        <div class="scroll-line"></div>
-        Scroll
-      </div>
-
-    </section>
-
-    <!-- ── MARQUEE ── -->
-    <div class="marquee-section" aria-hidden="true">
-      <div class="marquee-track">
-        <div class="marquee-inner" id="mq1"></div>
-        <div class="marquee-inner" id="mq2"></div>
-      </div>
     </div>
+  </section>
 
-    <!-- ── PROJECTS ── -->
-    <section id="projects">
-      <div class="projects-wrap">
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-wrap">
 
-        <div class="projects-header">
-          <div>
-            <div class="section-label reveal">Çalışmalar</div>
-            <h2 class="section-heading reveal">Seçili Projeler</h2>
-            <p class="section-note reveal">Her proje, gerçek bir problemi çözmek için tasarlandı.</p>
-          </div>
-          <div class="filter-set reveal">
-            <button class="fpill on" data-filter="all">Tümü</button>
-            <button class="fpill" data-filter="Web">Web</button>
-            <button class="fpill" data-filter="Mobil">Mobil</button>
-            <button class="fpill" data-filter="Full Stack">Full Stack</button>
-          </div>
+      <div class="section-header">
+        <div class="section-left">
+          <div class="section-tag rev">Çalışmalar</div>
+          <h2 class="section-title rev delay-1">Seçili Projeler</h2>
         </div>
-
-        <div class="pgrid" id="pgrid"></div>
-
+        <div class="filters rev">
+          <button class="fpill on" data-f="all">Tümü</button>
+          <button class="fpill" data-f="Web">Web</button>
+          <button class="fpill" data-f="Mobil">Mobil</button>
+          <button class="fpill" data-f="Full Stack">Full Stack</button>
+        </div>
       </div>
-    </section>
 
-    <!-- ── ABOUT ── -->
-    <section id="about">
-      <div class="about-wrap">
+      <div class="pgrid" id="pgrid"></div>
 
-        <div class="about-left reveal">
-          <div class="section-label">Hakkımda</div>
-          <h2 class="section-heading" style="margin-bottom:1.5rem">
-            Merhaba, ben<br/>
-            <span class="g1">bir geliştirici.</span>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-wrap">
+
+      <div class="about-grid">
+
+        <div class="rev">
+          <div class="section-tag">Hakkımda</div>
+          <h2 class="section-title" style="margin-bottom:1.5rem">
+            Merhaba, ben<br>
+            <span style="color:var(--ac)">bir geliştirici.</span>
           </h2>
 
-          <div class="about-avatar">M</div>
+          <p class="a-intro"><strong>3+ yıldır</strong> web ve mobil uygulama geliştiriyorum. Temiz kod, iyi performans ve güçlü kullanıcı deneyimi her zaman önceliğim.</p>
+          <p class="a-intro">Frontend'den backend'e, tasarımdan prod'a kadar tam yığın çalışabiliyorum. Yeni şeyler öğrenmek benim için bir tutku.</p>
 
-          <p class="about-intro">
-            <strong>3+ yıldır</strong> web ve mobil uygulama geliştiriyorum.
-            Temiz kod, performans ve etkileyici arayüzler benim için bir tutku.
-          </p>
-          <p class="about-intro">
-            Frontend'den backend'e, tasarımdan dağıtıma kadar tam yığın çalışabiliyorum.
-            Yeni teknolojileri öğrenmek ve uygulamak için sabırsızlanıyorum.
-          </p>
-
-          <div class="exp-list">
-            <div class="exp-card">
-              <div class="exp-icon">💼</div>
+          <div class="tl">
+            <div class="tl-item">
+              <div class="tl-icon">💼</div>
               <div>
-                <div class="exp-name">Full Stack Geliştirici</div>
-                <div class="exp-info">Freelance · 2022 – Günümüz</div>
+                <div class="tl-name">Full Stack Geliştirici</div>
+                <div class="tl-meta">Freelance · 2022 – Günümüz</div>
               </div>
             </div>
-            <div class="exp-card">
-              <div class="exp-icon">🎓</div>
+            <div class="tl-item">
+              <div class="tl-icon">🎓</div>
               <div>
-                <div class="exp-name">Bilgisayar Mühendisliği</div>
-                <div class="exp-info">Üniversite · 2019 – 2023</div>
+                <div class="tl-name">Bilgisayar Mühendisliği</div>
+                <div class="tl-meta">Üniversite · 2019 – 2023</div>
               </div>
             </div>
-            <div class="exp-card">
-              <div class="exp-icon">🚀</div>
+            <div class="tl-item">
+              <div class="tl-icon">⭐</div>
               <div>
-                <div class="exp-name">Açık Kaynak Katkıcı</div>
-                <div class="exp-info">GitHub · 2021 – Günümüz</div>
+                <div class="tl-name">Açık Kaynak Katkıcı</div>
+                <div class="tl-meta">GitHub · 2021 – Günümüz</div>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="about-right reveal">
+        <div class="rev delay-1">
           <div class="sk-group">
             <div class="sk-label">Frontend</div>
-            <div class="sk-row">
-              <div class="sk-chip">React</div>
-              <div class="sk-chip">Next.js</div>
-              <div class="sk-chip">Vue.js</div>
-              <div class="sk-chip">TypeScript</div>
-              <div class="sk-chip">Tailwind CSS</div>
-              <div class="sk-chip">Figma</div>
+            <div class="sk-wrap">
+              <div class="sk">React</div><div class="sk">Next.js</div>
+              <div class="sk">Vue.js</div><div class="sk">TypeScript</div>
+              <div class="sk">Tailwind CSS</div><div class="sk">Figma</div>
             </div>
           </div>
           <div class="sk-group">
             <div class="sk-label">Backend</div>
-            <div class="sk-row">
-              <div class="sk-chip">Node.js</div>
-              <div class="sk-chip">Express</div>
-              <div class="sk-chip">PostgreSQL</div>
-              <div class="sk-chip">MongoDB</div>
-              <div class="sk-chip">Redis</div>
-              <div class="sk-chip">GraphQL</div>
+            <div class="sk-wrap">
+              <div class="sk">Node.js</div><div class="sk">Express</div>
+              <div class="sk">PostgreSQL</div><div class="sk">MongoDB</div>
+              <div class="sk">Redis</div><div class="sk">GraphQL</div>
             </div>
           </div>
           <div class="sk-group">
             <div class="sk-label">DevOps & Araçlar</div>
-            <div class="sk-row">
-              <div class="sk-chip">Docker</div>
-              <div class="sk-chip">AWS</div>
-              <div class="sk-chip">Git</div>
-              <div class="sk-chip">CI/CD</div>
-              <div class="sk-chip">React Native</div>
-              <div class="sk-chip">Linux</div>
+            <div class="sk-wrap">
+              <div class="sk">Docker</div><div class="sk">AWS</div>
+              <div class="sk">Git</div><div class="sk">CI/CD</div>
+              <div class="sk">React Native</div><div class="sk">Linux</div>
             </div>
           </div>
         </div>
 
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ── CONTACT ── -->
-    <section id="contact">
-      <div class="contact-wrap">
-        <div class="section-label reveal">İletişim</div>
-        <h2 class="section-heading reveal">Birlikte çalışalım.</h2>
-        <p class="section-note reveal">Yeni bir proje mi var? Fikrinizi hayata geçirmeye hazırım.</p>
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-wrap">
+      <div class="contact-center">
+        <div class="section-tag rev">İletişim</div>
+        <h2 class="section-title rev delay-1">Birlikte çalışalım.</h2>
 
-        <div class="contact-big reveal">
+        <div class="contact-card rev delay-2">
           <h3>Selamlaşalım 👋</h3>
-          <p>Projen, fikirini veya sadece merhaba demek için yaz.<br/>En geç 24 saat içinde dönerim.</p>
+          <p>Yeni bir proje, fikir ya da sadece merhaba demek için yaz.<br>En geç 24 saat içinde dönerim.</p>
           <div class="contact-btns">
-            <a class="btn btn-primary" href="mailto:mail@example.com">✉ Mail Gönder</a>
-            <a class="btn-sm btn-sm-ghost" href="https://github.com" target="_blank">GitHub ↗</a>
-            <a class="btn-sm btn-sm-ghost" href="https://linkedin.com" target="_blank">LinkedIn ↗</a>
-            <a class="btn-sm btn-sm-ghost" href="https://twitter.com" target="_blank">Twitter ↗</a>
+            <a class="cb cb-main" href="mailto:mail@example.com">✉ Mail Gönder</a>
+            <a class="cb cb-sec" href="https://github.com" target="_blank">GitHub ↗</a>
+            <a class="cb cb-sec" href="https://linkedin.com" target="_blank">LinkedIn ↗</a>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-  </main>
-
+  <!-- FOOTER -->
   <footer>
     <div class="footer-row">
       <a class="footer-logo" href="index.html">
-        <span class="logo-dot"></span>dev.portfolio
+        <div class="logo-sq"></div>dev.portfolio
       </a>
-      <p class="footer-copy">Tasarlandı &amp; kodlandı — 2024</p>
+      <p class="footer-cp">Tasarlandı &amp; kodlandı — 2024</p>
     </div>
   </footer>
 
   <script src="projects.js"></script>
   <script>
   (() => {
-    // ── LOADER ──
-    window.addEventListener('load', () => {
-      setTimeout(() => document.getElementById('loader').classList.add('done'), 600);
-    });
-
-    // ── CUSTOM CURSOR ──
-    const cur  = document.getElementById('cursor');
-    const ring = document.getElementById('cursor-ring');
-    let mx=0, my=0, rx=0, ry=0;
-
-    document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
-
-    function animCursor() {
-      cur.style.left  = mx+'px'; cur.style.top  = my+'px';
-      rx += (mx-rx)*.14; ry += (my-ry)*.14;
-      ring.style.left = rx+'px'; ring.style.top = ry+'px';
-      requestAnimationFrame(animCursor);
-    }
-    animCursor();
-
-    // ── HEADER SCROLL ──
-    const header = document.getElementById('header');
-    window.addEventListener('scroll', () => {
-      header.classList.toggle('scrolled', window.scrollY > 30);
-    }, {passive:true});
-
-    // ── HERO WORDS ANIMATE ──
-    const words = document.querySelectorAll('.hero-title .word');
-    words.forEach(w => w.classList.add('visible'));
-
-    // ── COUNTER ANIMATION ──
-    function animCount(el, target, dur=1800) {
-      let start = null;
-      const step = ts => {
-        if (!start) start = ts;
-        const p = Math.min((ts-start)/dur, 1);
-        const ease = 1 - Math.pow(1-p, 4);
-        el.textContent = Math.round(ease * target) + (target >= 10 ? '+' : '');
-        if (p < 1) requestAnimationFrame(step);
-      };
-      requestAnimationFrame(step);
-    }
-
-    const statsObserver = new IntersectionObserver(entries => {
-      entries.forEach(e => {
+    // Scroll reveal
+    const io = new IntersectionObserver((es) => {
+      es.forEach((e, i) => {
         if (e.isIntersecting) {
-          document.querySelectorAll('.stat-num[data-target]').forEach(el => {
-            animCount(el, +el.dataset.target);
-          });
-          statsObserver.disconnect();
+          setTimeout(() => e.target.classList.add('show'), i * 55);
+          io.unobserve(e.target);
         }
       });
-    }, {threshold:.5});
-    const statsEl = document.querySelector('.hero-stats');
-    if (statsEl) statsObserver.observe(statsEl);
+    }, { threshold: 0.08 });
 
-    // ── MARQUEE ──
-    const skills = ['React','Next.js','Node.js','TypeScript','Vue.js','PostgreSQL','MongoDB','Docker','React Native','Figma','Redis','GraphQL','AWS','Tailwind','Express'];
-    function makeItems() {
-      return skills.map(s => `<span class="marquee-item">${s}</span><span class="marquee-sep">·</span>`).join('');
+    function observeAll() {
+      document.querySelectorAll('.rev:not(.show)').forEach(el => io.observe(el));
     }
-    document.getElementById('mq1').innerHTML = makeItems();
-    document.getElementById('mq2').innerHTML = makeItems();
 
-    // ── RENDER PROJECTS ──
-    function renderProjects(filter) {
+    // Render projects
+    function render(filter) {
       const grid = document.getElementById('pgrid');
       grid.innerHTML = '';
-      const list = filter==='all' ? projects : projects.filter(p=>p.category===filter);
+      const list = filter === 'all' ? projects : projects.filter(p => p.category === filter);
 
       list.forEach((p, i) => {
         const a = document.createElement('a');
-        a.className = 'pcard reveal';
+        a.className = 'pcard rev';
         a.href = `project.html?id=${p.id}`;
         a.innerHTML = `
-          <div class="pthumb">
-            <img src="${p.image}" alt="${p.title}" loading="lazy"/>
-            <div class="pthumb-overlay"></div>
-            <div class="pthumb-glow"></div>
-            <span class="pcat">${p.category}</span>
-            <span class="pnum">0${i+1}</span>
+          <div class="thumb">
+            <img src="${p.image}" alt="${p.title}" loading="lazy">
+            <div class="thumb-overlay"></div>
+            <span class="cat-pill">${p.category}</span>
           </div>
           <div class="pbody">
-            <h3 class="ptitle">${p.title}</h3>
-            <p class="pdesc">${p.description}</p>
+            <div class="ptitle">${p.title}</div>
+            <div class="pdesc">${p.description}</div>
           </div>
           <div class="pfoot">
             <div class="ptags">${p.tags.slice(0,3).map(t=>`<span class="ptag">${t}</span>`).join('')}</div>
@@ -334,46 +238,20 @@
           </div>`;
         grid.appendChild(a);
       });
-      observe();
+
+      observeAll();
     }
 
     document.querySelectorAll('.fpill').forEach(btn => {
       btn.addEventListener('click', () => {
-        document.querySelectorAll('.fpill').forEach(b=>b.classList.remove('on'));
+        document.querySelectorAll('.fpill').forEach(b => b.classList.remove('on'));
         btn.classList.add('on');
-        renderProjects(btn.dataset.filter);
+        render(btn.dataset.f);
       });
     });
 
-    // ── 3D CARD TILT ──
-    function addTilt(card) {
-      card.addEventListener('mousemove', e => {
-        const r  = card.getBoundingClientRect();
-        const x  = (e.clientX - r.left)/r.width  - .5;
-        const y  = (e.clientY - r.top) /r.height - .5;
-        card.style.transform = `perspective(900px) rotateY(${x*10}deg) rotateX(${-y*10}deg) translateZ(6px)`;
-      });
-      card.addEventListener('mouseleave', () => { card.style.transform=''; });
-    }
-
-    // ── SCROLL REVEAL ──
-    function observe() {
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach((entry, idx) => {
-          if (entry.isIntersecting) {
-            setTimeout(() => {
-              entry.target.classList.add('in');
-              if (entry.target.classList.contains('pcard')) addTilt(entry.target);
-            }, idx * 80);
-            io.unobserve(entry.target);
-          }
-        });
-      }, {threshold:.08});
-      document.querySelectorAll('.reveal:not(.in)').forEach(el => io.observe(el));
-    }
-
-    renderProjects('all');
-    observe();
+    render('all');
+    observeAll();
   })();
   </script>
 
