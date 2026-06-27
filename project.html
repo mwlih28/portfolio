@@ -8,14 +8,20 @@
 </head>
 <body>
 
-  <div class="orbs" aria-hidden="true">
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
+  <div id="cursor"></div>
+  <div id="cursor-ring"></div>
+
+  <div class="bg-wrap" aria-hidden="true">
+    <div class="bg-grid"></div>
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
   </div>
 
-  <header>
+  <header id="header">
     <div class="header-inner">
-      <a class="logo" href="index.html">dev.portfolio</a>
+      <a class="logo" href="index.html">
+        <span class="logo-dot"></span>dev.portfolio
+      </a>
       <nav>
         <a href="index.html#projects">Projeler</a>
         <a href="index.html#about">Hakkımda</a>
@@ -25,83 +31,88 @@
   </header>
 
   <main>
-    <div class="detail-page" id="detailPage"></div>
+    <div class="detail-page" id="dp"></div>
   </main>
 
   <footer>
-    <div class="footer-inner">
-      <a class="footer-logo" href="index.html">dev.portfolio</a>
-      <p class="footer-text">Tasarlandı &amp; kodlandı — 2024</p>
+    <div class="footer-row">
+      <a class="footer-logo" href="index.html">
+        <span class="logo-dot"></span>dev.portfolio
+      </a>
+      <p class="footer-copy">Tasarlandı &amp; kodlandı — 2024</p>
     </div>
   </footer>
 
   <script src="projects.js"></script>
   <script>
-    const params  = new URLSearchParams(window.location.search);
-    const id      = parseInt(params.get('id'), 10);
-    const idx     = projects.findIndex(p => p.id === id);
-    const project = projects[idx];
+  (() => {
+    // cursor
+    const cur=document.getElementById('cursor'), ring=document.getElementById('cursor-ring');
+    let mx=0,my=0,rx=0,ry=0;
+    document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+    (function a(){cur.style.left=mx+'px';cur.style.top=my+'px';rx+=(mx-rx)*.14;ry+=(my-ry)*.14;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(a);})();
 
-    if (!project) {
-      document.getElementById('detailPage').innerHTML = `
-        <a class="back-btn" href="index.html">← Geri Dön</a>
-        <p style="color:var(--muted)">Proje bulunamadı.</p>
-      `;
-    } else {
-      document.title = `${project.title} — Portfolio`;
+    // header
+    const h=document.getElementById('header');
+    window.addEventListener('scroll',()=>h.classList.toggle('scrolled',scrollY>30),{passive:true});
 
-      const prev = idx > 0 ? projects[idx - 1] : null;
-      const next = idx < projects.length - 1 ? projects[idx + 1] : null;
+    // render
+    const id  = parseInt(new URLSearchParams(location.search).get('id'),10);
+    const idx = projects.findIndex(p=>p.id===id);
+    const p   = projects[idx];
+    const dp  = document.getElementById('dp');
 
-      const navHTML = `
-        <div class="project-nav">
-          ${prev
-            ? `<a class="nav-card prev" href="project.html?id=${prev.id}">
-                <div class="nav-dir">← Önceki</div>
-                <div class="nav-name">${prev.title}</div>
-                <div class="nav-cat">${prev.category}</div>
-               </a>`
-            : `<div></div>`}
-          ${next
-            ? `<a class="nav-card next" href="project.html?id=${next.id}">
-                <div class="nav-dir">Sonraki →</div>
-                <div class="nav-name">${next.title}</div>
-                <div class="nav-cat">${next.category}</div>
-               </a>`
-            : `<div></div>`}
-        </div>
-      `;
-
-      document.getElementById('detailPage').innerHTML = `
-        <a class="back-btn" href="index.html">← Tüm Projelere</a>
-
-        <span class="detail-category">${project.category}</span>
-
-        <h1 class="detail-title">${project.title}</h1>
-
-        <div class="detail-meta">
-          ${project.tags.map(t => `<span class="tag">${t}</span>`).join('')}
-        </div>
-
-        <div class="detail-links-row">
-          <a class="btn btn-primary" href="${project.live}" target="_blank">Canlıya Bak ↗</a>
-          <a class="btn btn-ghost"   href="${project.github}" target="_blank">GitHub →</a>
-        </div>
-
-        <img class="detail-image" src="${project.image}" alt="${project.title}" />
-
-        <p class="detail-desc">${project.longDescription}</p>
-
-        <div class="detail-features">
-          <h2>Özellikler</h2>
-          <ul>
-            ${project.features.map(f => `<li>${f}</li>`).join('')}
-          </ul>
-        </div>
-
-        ${navHTML}
-      `;
+    if (!p) {
+      dp.innerHTML = `<a class="back-btn" href="index.html">← Geri Dön</a><p style="color:var(--muted)">Proje bulunamadı.</p>`;
+      return;
     }
+
+    document.title = `${p.title} — Portfolio`;
+
+    const prev = idx>0 ? projects[idx-1] : null;
+    const next = idx<projects.length-1 ? projects[idx+1] : null;
+
+    dp.innerHTML = `
+      <a class="back-btn" href="index.html">← Tüm Projelere</a>
+
+      <span class="d-cat">${p.category}</span>
+      <h1 class="d-title">${p.title}</h1>
+
+      <div class="d-tags">
+        ${p.tags.map(t=>`<span class="ptag">${t}</span>`).join('')}
+      </div>
+
+      <div class="d-links">
+        <a class="btn btn-primary" href="${p.live}" target="_blank">Canlıya Bak ↗</a>
+        <a class="btn btn-outline" href="${p.github}" target="_blank">GitHub →</a>
+      </div>
+
+      <img class="d-img" src="${p.image}" alt="${p.title}" />
+
+      <p class="d-desc">${p.longDescription}</p>
+
+      <div class="d-feat">
+        <h2>Özellikler</h2>
+        <ul>${p.features.map(f=>`<li>${f}</li>`).join('')}</ul>
+      </div>
+
+      <div class="pnav">
+        ${prev
+          ? `<a class="pnav-card prev" href="project.html?id=${prev.id}">
+               <div class="pnav-dir">← Önceki Proje</div>
+               <div class="pnav-name">${prev.title}</div>
+               <div class="pnav-cat">${prev.category}</div>
+             </a>`
+          : `<div></div>`}
+        ${next
+          ? `<a class="pnav-card next" href="project.html?id=${next.id}">
+               <div class="pnav-dir">Sonraki Proje →</div>
+               <div class="pnav-name">${next.title}</div>
+               <div class="pnav-cat">${next.category}</div>
+             </a>`
+          : `<div></div>`}
+      </div>`;
+  })();
   </script>
 </body>
 </html>
