@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>M&B Studio — Yazılım Geliştirme</title>
   <meta name="description" content="Melih & Berat — Full stack yazılım geliştirme stüdyosu." />
   <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23a855f7'/><text x='50%25' y='55%25' text-anchor='middle' dy='.35em' font-size='12' fill='white' font-weight='bold'>M%26A</text></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23a855f7'/><text x='50%25' y='55%25' text-anchor='middle' dy='.35em' font-size='12' fill='white' font-weight='bold'>M%26B</text></svg>" />
 </head>
 <body>
+
+  <!-- Scroll progress -->
+  <div class="scroll-progress" id="scrollProgress"></div>
 
   <div class="mesh" aria-hidden="true"></div>
   <div class="noise" aria-hidden="true"></div>
@@ -23,6 +26,10 @@
       <div class="nav-right">
         <a href="#projects">Projeler</a>
         <a href="#team">Ekip</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Tema değiştir">
+          <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
         <a href="#contact" class="contact-btn">İletişim</a>
       </div>
     </nav>
@@ -38,9 +45,11 @@
         Yeni projelere açığız
       </div>
 
-      <h1>
-        <span class="gr-violet">İki kardeş,</span><br>
-        <span class="gr-rose">bir takım.</span>
+      <h1 class="hero-h1">
+        <span class="word-wrap"><span class="word-inner gr-violet">İki</span></span>
+        <span class="word-wrap"><span class="word-inner gr-violet">kardeş,</span></span><br>
+        <span class="word-wrap"><span class="word-inner gr-rose">bir</span></span>
+        <span class="word-wrap"><span class="word-inner gr-rose">takım.</span></span>
       </h1>
 
       <p class="hero-desc">
@@ -48,9 +57,14 @@
         birlikte dijital çözümler üretiyoruz.
       </p>
 
+      <div class="hero-roles" id="heroRoles">
+        <span class="role-text"></span>
+        <span class="role-cursor">|</span>
+      </div>
+
       <div class="hero-cta">
-        <a class="btn btn-fill" href="#projects">Projeleri Gör ↓</a>
-        <a class="btn btn-ring" href="#contact">İletişime Geç</a>
+        <a class="btn btn-fill magnetic" href="#projects">Projeleri Gör ↓</a>
+        <a class="btn btn-ring magnetic" href="#contact">İletişime Geç</a>
       </div>
 
       <!-- Two avatars -->
@@ -72,11 +86,11 @@
         </div>
       </div>
 
-      <div class="hero-stats">
-        <div class="st"><div class="st-n">12<sup>+</sup></div><div class="st-l">Proje</div></div>
-        <div class="st"><div class="st-n">3<sup>+</sup></div><div class="st-l">Yıl</div></div>
-        <div class="st"><div class="st-n">8<sup>+</sup></div><div class="st-l">Müşteri</div></div>
-        <div class="st"><div class="st-n">100<sup>%</sup></div><div class="st-l">Teslimat</div></div>
+      <div class="hero-stats" id="heroStats">
+        <div class="st"><div class="st-n" data-count="12">0</div><div class="st-l">Proje</div></div>
+        <div class="st"><div class="st-n" data-count="3">0</div><div class="st-l">Yıl</div></div>
+        <div class="st"><div class="st-n" data-count="8">0</div><div class="st-l">Müşteri</div></div>
+        <div class="st"><div class="st-n" data-count="100" data-suffix="%">0</div><div class="st-l">Teslimat</div></div>
       </div>
 
     </section>
@@ -120,14 +134,17 @@
         <!-- Story -->
         <div class="about-story rv">
           <div class="story-block">
+            <div class="story-icon">📖</div>
             <h3 class="story-h">Hikayemiz</h3>
             <p>Küçüklükten beri teknolojiye meraklı iki kardeşiz. Melih arayüzlere, Berat ise sistemlerin arka planına ilgi duydu. Bu ilgilerimiz zamanla profesyonel bir ortaklığa dönüştü — şimdi birlikte, fikirden ürüne uçtan uca projeler geliştiriyoruz.</p>
           </div>
           <div class="story-block">
+            <div class="story-icon">⚡</div>
             <h3 class="story-h">Nasıl Çalışıyoruz</h3>
             <p>Melih kullanıcı arayüzünü ve deneyimini tasarlarken, Berat sunucu altyapısını, veritabanını ve API'leri kuruyor. Sonuç: hem güzel görünen hem de sağlam çalışan uygulamalar. İki farklı bakış açısı, tek güçlü ürün.</p>
           </div>
           <div class="story-block">
+            <div class="story-icon">🎯</div>
             <h3 class="story-h">Vizyonumuz</h3>
             <p>Kullanıcıların gerçekten sevdiği, hızlı ve erişilebilir dijital ürünler üretmek istiyoruz. Her projede yeni bir şey öğrenmeye ve kendimizi geliştirmeye devam ediyoruz.</p>
           </div>
@@ -135,9 +152,8 @@
 
         <!-- Team Cards -->
         <div class="team-grid">
-
           <!-- Melih -->
-          <div class="team-card rv">
+          <div class="team-card rv tilt-card">
             <div class="tc-top" style="--accent:#a855f7">
               <div class="tc-avatar" style="background:linear-gradient(135deg,#a855f7,#7c3aed)">M</div>
               <div class="tc-badge" style="background:rgba(168,85,247,.1);border-color:rgba(168,85,247,.22);color:#c084fc">Frontend</div>
@@ -158,7 +174,7 @@
           </div>
 
           <!-- Berat -->
-          <div class="team-card rv">
+          <div class="team-card rv tilt-card">
             <div class="tc-top" style="--accent:#3b82f6">
               <div class="tc-avatar" style="background:linear-gradient(135deg,#3b82f6,#1d4ed8)">B</div>
               <div class="tc-badge" style="background:rgba(59,130,246,.1);border-color:rgba(59,130,246,.22);color:#60a5fa">Backend</div>
@@ -177,7 +193,6 @@
             </div>
             <a class="tc-mail" href="mailto:byazar1628@gmail.com">byazar1628@gmail.com</a>
           </div>
-
         </div>
       </div>
     </section>
@@ -192,9 +207,9 @@
             <h3>Bir projen mi var?</h3>
             <p>Frontend'den backend'e, fikirden ürüne — birlikte çözelim.</p>
             <div class="cta-btns">
-              <a class="cb cb-main" href="mailto:mwlih28@gmail.com">✉ Melih'e Yaz</a>
-              <a class="cb cb-main" style="background:linear-gradient(135deg,#3b82f6,#1d4ed8)" href="mailto:byazar1628@gmail.com">✉ Berat'a Yaz</a>
-              <a class="cb cb-ghost" href="https://github.com" target="_blank">GitHub</a>
+              <a class="cb cb-main magnetic" href="mailto:mwlih28@gmail.com">✉ Melih'e Yaz</a>
+              <a class="cb cb-main magnetic" style="background:linear-gradient(135deg,#3b82f6,#1d4ed8)" href="mailto:byazar1628@gmail.com">✉ Berat'a Yaz</a>
+              <a class="cb cb-ghost magnetic" href="https://github.com" target="_blank">GitHub</a>
             </div>
           </div>
         </div>
@@ -202,6 +217,17 @@
     </section>
 
   </main>
+
+  <!-- Back to top -->
+  <button class="btt" id="btt" aria-label="Yukarı çık">
+    <svg class="btt-ring" viewBox="0 0 36 36">
+      <circle cx="18" cy="18" r="16" stroke-width="2" fill="none" stroke="rgba(255,255,255,.1)"/>
+      <circle class="btt-progress" cx="18" cy="18" r="16" stroke-width="2" fill="none" stroke="url(#bttGrad)" stroke-linecap="round"
+        stroke-dasharray="100.53" stroke-dashoffset="100.53" transform="rotate(-90 18 18)"/>
+      <defs><linearGradient id="bttGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#a855f7"/><stop offset="100%" stop-color="#ec4899"/></linearGradient></defs>
+    </svg>
+    <span class="btt-arrow">↑</span>
+  </button>
 
   <footer>
     <div class="foot-row">
@@ -213,9 +239,134 @@
   <script src="projects.js"></script>
   <script>
   (() => {
+    // ─── SCROLL PROGRESS BAR ───
+    const progressBar = document.getElementById('scrollProgress');
+    function updateProgress() {
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = h > 0 ? (window.scrollY / h) * 100 : 0;
+      progressBar.style.width = pct + '%';
+    }
+
+    // ─── BACK TO TOP ───
+    const btt = document.getElementById('btt');
+    const bttCircle = document.querySelector('.btt-progress');
+    const circumference = 2 * Math.PI * 16;
+    function updateBTT() {
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = h > 0 ? window.scrollY / h : 0;
+      bttCircle.style.strokeDashoffset = circumference * (1 - pct);
+      btt.classList.toggle('show', window.scrollY > 400);
+    }
+    btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // Combined scroll handler
+    window.addEventListener('scroll', () => { updateProgress(); updateBTT(); }, { passive: true });
+
+    // ─── HERO WORD REVEAL ───
+    const words = document.querySelectorAll('.word-inner');
+    words.forEach((w, i) => {
+      setTimeout(() => w.classList.add('show'), 200 + i * 120);
+    });
+
+    // ─── TYPING EFFECT ───
+    const roles = ['Web Uygulamaları', 'Mobil Uygulamalar', 'E-Ticaret Siteleri', 'Dashboard Tasarımları', 'API Geliştirme', 'UI/UX Tasarım'];
+    const roleEl = document.querySelector('.role-text');
+    let roleIdx = 0, charIdx = 0, deleting = false;
+    function typeRole() {
+      const current = roles[roleIdx];
+      if (!deleting) {
+        roleEl.textContent = current.slice(0, ++charIdx);
+        if (charIdx === current.length) { deleting = true; setTimeout(typeRole, 1800); return; }
+        setTimeout(typeRole, 70);
+      } else {
+        roleEl.textContent = current.slice(0, --charIdx);
+        if (charIdx === 0) { deleting = false; roleIdx = (roleIdx + 1) % roles.length; setTimeout(typeRole, 400); return; }
+        setTimeout(typeRole, 40);
+      }
+    }
+    setTimeout(typeRole, 1200);
+
+    // ─── COUNTER ANIMATION ───
+    const statsObs = new IntersectionObserver(es => {
+      es.forEach(e => {
+        if (e.isIntersecting) {
+          document.querySelectorAll('.st-n[data-count]').forEach(el => {
+            const target = +el.dataset.count;
+            const suffix = el.dataset.suffix || '+';
+            let start = null;
+            const dur = 2000;
+            function step(ts) {
+              if (!start) start = ts;
+              const p = Math.min((ts - start) / dur, 1);
+              const ease = 1 - Math.pow(1 - p, 4);
+              el.textContent = Math.round(ease * target) + suffix;
+              if (p < 1) requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+          });
+          statsObs.disconnect();
+        }
+      });
+    }, { threshold: .5 });
+    statsObs.observe(document.getElementById('heroStats'));
+
+    // ─── MAGNETIC BUTTONS ───
+    document.querySelectorAll('.magnetic').forEach(btn => {
+      btn.addEventListener('mousemove', e => {
+        const r = btn.getBoundingClientRect();
+        const x = e.clientX - r.left - r.width / 2;
+        const y = e.clientY - r.top - r.height / 2;
+        btn.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = '';
+        btn.style.transition = 'transform .4s cubic-bezier(.22,1,.36,1)';
+        setTimeout(() => btn.style.transition = '', 400);
+      });
+    });
+
+    // ─── 3D TILT ON TEAM CARDS ───
+    document.querySelectorAll('.tilt-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - .5;
+        const y = (e.clientY - r.top) / r.height - .5;
+        card.style.transform = `perspective(800px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateY(-4px)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+        card.style.transition = 'transform .5s cubic-bezier(.22,1,.36,1), border-color .25s, box-shadow .25s';
+        setTimeout(() => card.style.transition = '', 500);
+      });
+    });
+
+    // ─── PARALLAX ON MESH BG ───
+    const mesh = document.querySelector('.mesh');
+    window.addEventListener('scroll', () => {
+      mesh.style.transform = `translateY(${window.scrollY * 0.15}px)`;
+    }, { passive: true });
+
+    // ─── THEME TOGGLE ───
+    const toggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+    const saved = localStorage.getItem('theme');
+    if (saved) html.dataset.theme = saved;
+
+    toggle.addEventListener('click', () => {
+      const next = html.dataset.theme === 'dark' ? 'light' : 'dark';
+      html.dataset.theme = next;
+      localStorage.setItem('theme', next);
+    });
+
+    // ─── SCROLL REVEAL ───
     const io = new IntersectionObserver(es => {
-      es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('v'); io.unobserve(e.target); } });
-    }, { threshold: .1 });
+      es.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('v'), i * 70);
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: .08 });
     function observe() { document.querySelectorAll('.rv:not(.v)').forEach(el => io.observe(el)); }
 
     let catFilter = 'all';
@@ -262,7 +413,6 @@
       observe();
     }
 
-    // category filters
     document.querySelectorAll('.pill:not(.apill)').forEach(b => {
       b.addEventListener('click', () => {
         document.querySelectorAll('.pill:not(.apill)').forEach(x => x.classList.remove('on'));
@@ -272,7 +422,6 @@
       });
     });
 
-    // author filters
     document.querySelectorAll('.apill').forEach(b => {
       b.addEventListener('click', () => {
         document.querySelectorAll('.apill').forEach(x => x.classList.remove('on'));
