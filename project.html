@@ -5,32 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Proje — Portfolio</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23a855f7'/><text x='50%25' y='55%25' text-anchor='middle' dy='.35em' font-size='18' fill='white' font-weight='bold'>M</text></svg>" />
 </head>
 <body>
 
+  <div class="mesh" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+
   <header>
-    <div class="nav">
+    <nav class="nav-bar">
       <a class="logo" href="index.html">
-        <div class="logo-sq"></div>dev.portfolio
+        <div class="logo-icon">M</div>
+        portfolio
       </a>
-      <div class="nav-links">
+      <div class="nav-right">
         <a href="index.html#projects">Projeler</a>
         <a href="index.html#about">Hakkımda</a>
-        <a href="index.html#contact" class="cta">İletişim</a>
+        <a href="index.html#contact" class="contact-btn">İletişim</a>
       </div>
-    </div>
+    </nav>
   </header>
 
   <main>
-    <div class="detail-wrap" id="dp"></div>
+    <div class="detail" id="dp"></div>
   </main>
 
   <footer>
-    <div class="footer-row">
-      <a class="footer-logo" href="index.html">
-        <div class="logo-sq"></div>dev.portfolio
-      </a>
-      <p class="footer-cp">Tasarlandı &amp; kodlandı — 2024</p>
+    <div class="foot-row">
+      <a class="foot-logo" href="index.html"><div class="logo-icon">M</div>portfolio</a>
+      <span class="foot-txt">© 2024 — Tasarlandı & kodlandı</span>
     </div>
   </footer>
 
@@ -43,57 +46,42 @@
     const dp  = document.getElementById('dp');
 
     if (!p) {
-      dp.innerHTML = `<a class="back-btn" href="index.html">← Geri Dön</a><p style="color:var(--t2)">Proje bulunamadı.</p>`;
+      dp.innerHTML = `<a class="back" href="index.html">← Geri Dön</a><p style="color:var(--dim)">Proje bulunamadı.</p>`;
       return;
     }
-
     document.title = `${p.title} — Portfolio`;
 
     const prev = idx > 0 ? projects[idx - 1] : null;
     const next = idx < projects.length - 1 ? projects[idx + 1] : null;
 
     dp.innerHTML = `
-      <a class="back-btn" href="index.html">← Tüm Projelere</a>
-
+      <a class="back" href="index.html">← Tüm Projelere</a>
       <span class="d-cat">${p.category}</span>
-      <h1 class="d-title">${p.title}</h1>
-
-      <div class="d-tags">
-        ${p.tags.map(t => `<span class="ptag">${t}</span>`).join('')}
-      </div>
-
+      <h1 class="d-h1">${p.title}</h1>
+      <div class="d-tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
       <div class="d-links">
-        <a class="btn btn-ac" href="${p.live}" target="_blank">Canlıya Bak ↗</a>
-        <a class="btn btn-ghost" href="${p.github}" target="_blank">GitHub →</a>
+        <a class="btn btn-fill" href="${p.live}" target="_blank">Canlıya Bak ↗</a>
+        <a class="btn btn-ring" href="${p.github}" target="_blank">GitHub →</a>
       </div>
-
-      <img class="d-img" src="${p.image}" alt="${p.title}">
-
+      <img class="d-hero-img" src="${p.image}" alt="${p.title}">
       <p class="d-text">${p.longDescription}</p>
-
       <div class="d-feats">
         <h2>Özellikler</h2>
         <ul>${p.features.map(f => `<li>${f}</li>`).join('')}</ul>
       </div>
-
       <div class="pnav">
-        ${prev
-          ? `<a class="pnav-card prev" href="project.html?id=${prev.id}">
-               <div class="pnav-dir">← Önceki Proje</div>
-               <div class="pnav-name">${prev.title}</div>
-               <div class="pnav-cat">${prev.category}</div>
-             </a>`
-          : `<div></div>`}
-        ${next
-          ? `<a class="pnav-card next" href="project.html?id=${next.id}">
-               <div class="pnav-dir">Sonraki Proje →</div>
-               <div class="pnav-name">${next.title}</div>
-               <div class="pnav-cat">${next.category}</div>
-             </a>`
-          : `<div></div>`}
+        ${prev ? `<a class="pnav-card prev" href="project.html?id=${prev.id}">
+          <div class="pnav-dir">← Önceki</div>
+          <div class="pnav-name">${prev.title}</div>
+          <div class="pnav-cat">${prev.category}</div>
+        </a>` : '<div></div>'}
+        ${next ? `<a class="pnav-card next" href="project.html?id=${next.id}">
+          <div class="pnav-dir">Sonraki →</div>
+          <div class="pnav-name">${next.title}</div>
+          <div class="pnav-cat">${next.category}</div>
+        </a>` : '<div></div>'}
       </div>`;
   })();
   </script>
-
 </body>
 </html>

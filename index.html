@@ -3,257 +3,213 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio — Full Stack Geliştirici</title>
-  <meta name="description" content="Modern web ve mobil uygulamalar geliştiren yazılım geliştiricinin portfolio sitesi." />
+  <title>Portfolio — Full Stack Developer</title>
+  <meta name="description" content="Full stack geliştirici portfolio sitesi." />
   <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23a855f7'/><text x='50%25' y='55%25' text-anchor='middle' dy='.35em' font-size='18' fill='white' font-weight='bold'>M</text></svg>" />
 </head>
 <body>
 
-  <!-- HEADER -->
+  <div class="mesh" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <!-- NAV -->
   <header>
-    <div class="nav">
+    <nav class="nav-bar">
       <a class="logo" href="index.html">
-        <div class="logo-sq"></div>
-        dev.portfolio
+        <div class="logo-icon">M</div>
+        portfolio
       </a>
-      <div class="nav-links">
+      <div class="nav-right">
         <a href="#projects">Projeler</a>
         <a href="#about">Hakkımda</a>
-        <a href="#contact" class="cta">İletişim</a>
+        <a href="#contact" class="contact-btn">İletişim</a>
       </div>
-    </div>
+    </nav>
   </header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-glow" aria-hidden="true"></div>
-    <div class="hero-inner">
+  <main>
 
-      <div class="avail rev">
-        <span class="avail-dot"></span>
-        Müsait — Yeni projelere açığım
+    <!-- HERO -->
+    <section class="hero">
+
+      <div class="hero-tag">
+        <span class="pulse"></span>
+        Yeni projelere açığım
       </div>
 
-      <h1 class="hero-h1 rev delay-1">
-        Full Stack<br>
-        Web <span class="ac">Dev.</span>
+      <h1>
+        <span class="gr-violet">Geliştirici,</span><br>
+        <span class="gr-rose">Tasarımcı.</span>
       </h1>
 
-      <p class="hero-desc rev delay-2">
-        Hızlı, erişilebilir ve kullanıcıların gerçekten sevdiği
-        dijital ürünler geliştiriyorum.
+      <p class="hero-desc">
+        Hızlı, erişilebilir ve kullanıcıların sevdiği dijital
+        ürünler inşa ediyorum. İşte bazı çalışmalarım.
       </p>
 
-      <div class="hero-btns rev delay-3">
-        <a class="btn btn-ac" href="#projects">Projeleri Gör ↓</a>
-        <a class="btn btn-ghost" href="#contact">İletişime Geç</a>
+      <div class="hero-cta">
+        <a class="btn btn-fill" href="#projects">Projeleri Gör ↓</a>
+        <a class="btn btn-ring" href="#contact">İletişime Geç</a>
       </div>
 
-      <div class="hero-stats rev">
-        <div class="stat">
-          <div class="stat-n">12<sup>+</sup></div>
-          <div class="stat-l">Tamamlanan Proje</div>
-        </div>
-        <div class="stat">
-          <div class="stat-n">3<sup>+</sup></div>
-          <div class="stat-l">Yıl Deneyim</div>
-        </div>
-        <div class="stat">
-          <div class="stat-n">8<sup>+</sup></div>
-          <div class="stat-l">Mutlu Müşteri</div>
-        </div>
-        <div class="stat">
-          <div class="stat-n">100<sup>%</sup></div>
-          <div class="stat-l">Zamanında Teslimat</div>
-        </div>
+      <div class="hero-stats">
+        <div class="st"><div class="st-n">12<sup>+</sup></div><div class="st-l">Proje</div></div>
+        <div class="st"><div class="st-n">3<sup>+</sup></div><div class="st-l">Yıl</div></div>
+        <div class="st"><div class="st-n">8<sup>+</sup></div><div class="st-l">Müşteri</div></div>
+        <div class="st"><div class="st-n">100<sup>%</sup></div><div class="st-l">Teslimat</div></div>
       </div>
 
-    </div>
-  </section>
+    </section>
 
-  <!-- PROJECTS -->
-  <section id="projects">
-    <div class="section-wrap">
-
-      <div class="section-header">
-        <div class="section-left">
-          <div class="section-tag rev">Çalışmalar</div>
-          <h2 class="section-title rev delay-1">Seçili Projeler</h2>
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="container">
+        <div class="sec-top">
+          <div class="sec-head rv">
+            <div class="sec-tag">projeler</div>
+            <h2 class="sec-h2">Seçili Çalışmalar</h2>
+          </div>
+          <div class="pills rv">
+            <button class="pill on" data-f="all">Tümü</button>
+            <button class="pill" data-f="Web">Web</button>
+            <button class="pill" data-f="Mobil">Mobil</button>
+            <button class="pill" data-f="Full Stack">Full Stack</button>
+          </div>
         </div>
-        <div class="filters rev">
-          <button class="fpill on" data-f="all">Tümü</button>
-          <button class="fpill" data-f="Web">Web</button>
-          <button class="fpill" data-f="Mobil">Mobil</button>
-          <button class="fpill" data-f="Full Stack">Full Stack</button>
-        </div>
+        <div class="bento" id="grid"></div>
       </div>
+    </section>
 
-      <div class="pgrid" id="pgrid"></div>
-
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="section-wrap">
-
-      <div class="about-grid">
-
-        <div class="rev">
-          <div class="section-tag">Hakkımda</div>
-          <h2 class="section-title" style="margin-bottom:1.5rem">
-            Merhaba, ben<br>
-            <span style="color:var(--ac)">bir geliştirici.</span>
-          </h2>
-
-          <p class="a-intro"><strong>3+ yıldır</strong> web ve mobil uygulama geliştiriyorum. Temiz kod, iyi performans ve güçlü kullanıcı deneyimi her zaman önceliğim.</p>
-          <p class="a-intro">Frontend'den backend'e, tasarımdan prod'a kadar tam yığın çalışabiliyorum. Yeni şeyler öğrenmek benim için bir tutku.</p>
-
-          <div class="tl">
-            <div class="tl-item">
-              <div class="tl-icon">💼</div>
-              <div>
-                <div class="tl-name">Full Stack Geliştirici</div>
-                <div class="tl-meta">Freelance · 2022 – Günümüz</div>
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container">
+        <div class="about-layout">
+          <div class="rv">
+            <div class="sec-tag">hakkımda</div>
+            <h2 class="sec-h2" style="margin-bottom:1.5rem">
+              Merhaba, ben bir<br><span class="gr-violet">full-stack dev.</span>
+            </h2>
+            <p class="a-intro"><strong>3+ yıldır</strong> web ve mobil uygulama geliştiriyorum. Temiz kod, performans ve güçlü kullanıcı deneyimi her zaman önceliğim.</p>
+            <p class="a-intro">Frontend'den backend'e, tasarımdan prod'a kadar geniş bir yelpazede çalışabiliyorum.</p>
+            <div class="timeline">
+              <div class="tl-row">
+                <div class="tl-dot">💼</div>
+                <div><div class="tl-title">Full Stack Geliştirici</div><div class="tl-sub">Freelance · 2022 – Günümüz</div></div>
+              </div>
+              <div class="tl-row">
+                <div class="tl-dot">🎓</div>
+                <div><div class="tl-title">Bilgisayar Mühendisliği</div><div class="tl-sub">Üniversite · 2019 – 2023</div></div>
+              </div>
+              <div class="tl-row">
+                <div class="tl-dot">⭐</div>
+                <div><div class="tl-title">Açık Kaynak Katkıcı</div><div class="tl-sub">GitHub · 2021 – Günümüz</div></div>
               </div>
             </div>
-            <div class="tl-item">
-              <div class="tl-icon">🎓</div>
-              <div>
-                <div class="tl-name">Bilgisayar Mühendisliği</div>
-                <div class="tl-meta">Üniversite · 2019 – 2023</div>
+          </div>
+          <div class="rv">
+            <div class="sk-section">
+              <div class="sk-h">frontend</div>
+              <div class="sk-items">
+                <div class="sk-chip">React</div><div class="sk-chip">Next.js</div>
+                <div class="sk-chip">Vue.js</div><div class="sk-chip">TypeScript</div>
+                <div class="sk-chip">Tailwind</div><div class="sk-chip">Figma</div>
               </div>
             </div>
-            <div class="tl-item">
-              <div class="tl-icon">⭐</div>
-              <div>
-                <div class="tl-name">Açık Kaynak Katkıcı</div>
-                <div class="tl-meta">GitHub · 2021 – Günümüz</div>
+            <div class="sk-section">
+              <div class="sk-h">backend</div>
+              <div class="sk-items">
+                <div class="sk-chip">Node.js</div><div class="sk-chip">Express</div>
+                <div class="sk-chip">PostgreSQL</div><div class="sk-chip">MongoDB</div>
+                <div class="sk-chip">Redis</div><div class="sk-chip">GraphQL</div>
+              </div>
+            </div>
+            <div class="sk-section">
+              <div class="sk-h">devops & tools</div>
+              <div class="sk-items">
+                <div class="sk-chip">Docker</div><div class="sk-chip">AWS</div>
+                <div class="sk-chip">Git</div><div class="sk-chip">CI/CD</div>
+                <div class="sk-chip">React Native</div><div class="sk-chip">Linux</div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="rev delay-1">
-          <div class="sk-group">
-            <div class="sk-label">Frontend</div>
-            <div class="sk-wrap">
-              <div class="sk">React</div><div class="sk">Next.js</div>
-              <div class="sk">Vue.js</div><div class="sk">TypeScript</div>
-              <div class="sk">Tailwind CSS</div><div class="sk">Figma</div>
-            </div>
-          </div>
-          <div class="sk-group">
-            <div class="sk-label">Backend</div>
-            <div class="sk-wrap">
-              <div class="sk">Node.js</div><div class="sk">Express</div>
-              <div class="sk">PostgreSQL</div><div class="sk">MongoDB</div>
-              <div class="sk">Redis</div><div class="sk">GraphQL</div>
-            </div>
-          </div>
-          <div class="sk-group">
-            <div class="sk-label">DevOps & Araçlar</div>
-            <div class="sk-wrap">
-              <div class="sk">Docker</div><div class="sk">AWS</div>
-              <div class="sk">Git</div><div class="sk">CI/CD</div>
-              <div class="sk">React Native</div><div class="sk">Linux</div>
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container">
+        <div class="contact-center">
+          <div class="sec-tag rv">iletişim</div>
+          <h2 class="sec-h2 rv">Birlikte çalışalım.</h2>
+          <div class="cta-card rv">
+            <h3>Bir projen mi var?</h3>
+            <p>Fikrini hayata geçirmek için hazırım. Yaz, konuşalım.</p>
+            <div class="cta-btns">
+              <a class="cb cb-main" href="mailto:mail@example.com">✉ Mail Gönder</a>
+              <a class="cb cb-ghost" href="https://github.com" target="_blank">GitHub</a>
+              <a class="cb cb-ghost" href="https://linkedin.com" target="_blank">LinkedIn</a>
             </div>
           </div>
         </div>
-
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="section-wrap">
-      <div class="contact-center">
-        <div class="section-tag rev">İletişim</div>
-        <h2 class="section-title rev delay-1">Birlikte çalışalım.</h2>
+  </main>
 
-        <div class="contact-card rev delay-2">
-          <h3>Selamlaşalım 👋</h3>
-          <p>Yeni bir proje, fikir ya da sadece merhaba demek için yaz.<br>En geç 24 saat içinde dönerim.</p>
-          <div class="contact-btns">
-            <a class="cb cb-main" href="mailto:mail@example.com">✉ Mail Gönder</a>
-            <a class="cb cb-sec" href="https://github.com" target="_blank">GitHub ↗</a>
-            <a class="cb cb-sec" href="https://linkedin.com" target="_blank">LinkedIn ↗</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
   <footer>
-    <div class="footer-row">
-      <a class="footer-logo" href="index.html">
-        <div class="logo-sq"></div>dev.portfolio
-      </a>
-      <p class="footer-cp">Tasarlandı &amp; kodlandı — 2024</p>
+    <div class="foot-row">
+      <a class="foot-logo" href="index.html"><div class="logo-icon">M</div>portfolio</a>
+      <span class="foot-txt">© 2024 — Tasarlandı & kodlandı</span>
     </div>
   </footer>
 
   <script src="projects.js"></script>
   <script>
   (() => {
-    // Scroll reveal
-    const io = new IntersectionObserver((es) => {
-      es.forEach((e, i) => {
-        if (e.isIntersecting) {
-          setTimeout(() => e.target.classList.add('show'), i * 55);
-          io.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.08 });
+    // reveal on scroll
+    const io = new IntersectionObserver(es => {
+      es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('v'); io.unobserve(e.target); } });
+    }, { threshold: .1 });
+    function observe() { document.querySelectorAll('.rv:not(.v)').forEach(el => io.observe(el)); }
 
-    function observeAll() {
-      document.querySelectorAll('.rev:not(.show)').forEach(el => io.observe(el));
-    }
-
-    // Render projects
-    function render(filter) {
-      const grid = document.getElementById('pgrid');
-      grid.innerHTML = '';
-      const list = filter === 'all' ? projects : projects.filter(p => p.category === filter);
-
-      list.forEach((p, i) => {
+    // render bento cards
+    function render(f) {
+      const g = document.getElementById('grid');
+      g.innerHTML = '';
+      const list = f === 'all' ? projects : projects.filter(p => p.category === f);
+      list.forEach(p => {
         const a = document.createElement('a');
-        a.className = 'pcard rev';
+        a.className = 'card rv';
         a.href = `project.html?id=${p.id}`;
         a.innerHTML = `
-          <div class="thumb">
-            <img src="${p.image}" alt="${p.title}" loading="lazy">
-            <div class="thumb-overlay"></div>
-            <span class="cat-pill">${p.category}</span>
-          </div>
-          <div class="pbody">
-            <div class="ptitle">${p.title}</div>
-            <div class="pdesc">${p.description}</div>
-          </div>
-          <div class="pfoot">
-            <div class="ptags">${p.tags.slice(0,3).map(t=>`<span class="ptag">${t}</span>`).join('')}</div>
-            <div class="parrow">↗</div>
+          <div class="card-img"><img src="${p.image}" alt="${p.title}" loading="lazy"></div>
+          <div class="card-content">
+            <span class="card-cat">${p.category}</span>
+            <h3 class="card-h">${p.title}</h3>
+            <p class="card-p">${p.description}</p>
+            <div class="card-bottom">
+              <div class="tags">${p.tags.slice(0,3).map(t => `<span class="tag">${t}</span>`).join('')}</div>
+              <div class="arrow-btn">↗</div>
+            </div>
           </div>`;
-        grid.appendChild(a);
+        g.appendChild(a);
       });
-
-      observeAll();
+      observe();
     }
 
-    document.querySelectorAll('.fpill').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.fpill').forEach(b => b.classList.remove('on'));
-        btn.classList.add('on');
-        render(btn.dataset.f);
+    document.querySelectorAll('.pill').forEach(b => {
+      b.addEventListener('click', () => {
+        document.querySelectorAll('.pill').forEach(x => x.classList.remove('on'));
+        b.classList.add('on');
+        render(b.dataset.f);
       });
     });
 
     render('all');
-    observeAll();
+    observe();
   })();
   </script>
-
 </body>
 </html>
