@@ -3,115 +3,281 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio</title>
+  <title>Portfolio — Yazılım Geliştirici</title>
+  <meta name="description" content="Modern web ve mobil uygulamalar geliştiren yazılım geliştiricinin portfolio sitesi." />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
+  <!-- Background orbs -->
+  <div class="orbs" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- Header -->
   <header>
     <div class="header-inner">
       <a class="logo" href="index.html">dev.portfolio</a>
       <nav>
         <a href="#projects">Projeler</a>
         <a href="#about">Hakkımda</a>
-        <a href="mailto:mail@example.com">İletişim</a>
+        <a href="#contact" class="nav-cta">İletişim</a>
       </nav>
     </div>
   </header>
 
-  <section class="hero">
-    <div class="hero-badge">Geliştirici & Tasarımcı</div>
-    <h1>Kod ile hayat bulan<br /><span>fikirler</span></h1>
-    <p>Merhaba! Modern web ve mobil uygulamalar geliştiriyorum. Aşağıda projelerimi inceleyebilirsin.</p>
-    <div class="hero-cta">
-      <a class="btn btn-primary" href="#projects">Projeleri Gör</a>
-      <a class="btn btn-secondary" href="#about">Hakkımda</a>
-    </div>
-  </section>
+  <main>
 
-  <section id="projects">
-    <div class="filters-section">
-      <h2>Projeler</h2>
-      <button class="filter-btn active" data-filter="all">Tümü</button>
-      <button class="filter-btn" data-filter="Web">Web</button>
-      <button class="filter-btn" data-filter="Mobil">Mobil</button>
-      <button class="filter-btn" data-filter="Full Stack">Full Stack</button>
-    </div>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <div class="hero-eyebrow">
+            <span class="dot"></span>
+            Müsait — Yeni projelere açığım
+          </div>
+          <h1 class="hero-title">
+            <span class="line">Kod ile inşa</span>
+            <span class="line gradient-text">edilen fikirler.</span>
+          </h1>
+          <p class="hero-desc">
+            Full-stack geliştirici olarak hızlı, erişilebilir ve göz alıcı dijital ürünler üretiyorum.
+            Kullanıcı deneyimi her zaman önce gelir.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">
+              Projeleri İncele
+              <span>↓</span>
+            </a>
+            <a class="btn btn-ghost" href="#contact">İletişime Geç</a>
+          </div>
+        </div>
 
-    <div class="projects-grid" id="projectsGrid">
-      <!-- JS ile doldurulacak -->
-    </div>
-  </section>
+        <div class="hero-stats">
+          <div class="stat-card">
+            <div class="stat-number">12+</div>
+            <div class="stat-label">Tamamlanan Proje</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">3+</div>
+            <div class="stat-label">Yıl Deneyim</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">8+</div>
+            <div class="stat-label">Mutlu Müşteri</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <section id="about" class="about-section">
-    <div class="about-text">
-      <h2>Hakkımda</h2>
-      <p>Yazılım geliştirmeye tutkuyla bağlı bir geliştiriciyim. Kullanıcı deneyimini ön planda tutarak, modern teknolojilerle güçlü uygulamalar inşa ediyorum.</p>
-      <p>Frontend'den backend'e, mobil uygulamalardan API tasarımına kadar geniş bir yelpazede çalışıyorum.</p>
-      <a class="btn btn-primary" href="mailto:mail@example.com">Benimle Çalış</a>
-    </div>
-    <div class="skills-grid">
-      <div class="skill-chip">React</div>
-      <div class="skill-chip">Node.js</div>
-      <div class="skill-chip">TypeScript</div>
-      <div class="skill-chip">Vue.js</div>
-      <div class="skill-chip">Next.js</div>
-      <div class="skill-chip">MongoDB</div>
-      <div class="skill-chip">PostgreSQL</div>
-      <div class="skill-chip">Docker</div>
-      <div class="skill-chip">React Native</div>
-    </div>
-  </section>
+    <!-- Projects -->
+    <section id="projects">
+      <div class="projects-container">
+
+        <div class="section-header reveal">
+          <span class="section-eyebrow">Çalışmalar</span>
+          <h2 class="section-title">Seçili Projeler</h2>
+          <p class="section-sub">Her proje, bir problemi çözmek için tasarlandı. Detaylara tıklayarak daha fazla bilgi edinin.</p>
+        </div>
+
+        <div class="filter-bar reveal">
+          <button class="filter-pill active" data-filter="all">Tümü</button>
+          <button class="filter-pill" data-filter="Web">Web</button>
+          <button class="filter-pill" data-filter="Mobil">Mobil</button>
+          <button class="filter-pill" data-filter="Full Stack">Full Stack</button>
+        </div>
+
+        <div class="projects-grid" id="projectsGrid">
+          <!-- JS renders here -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <div class="about-container">
+
+        <div class="about-left reveal">
+          <span class="section-eyebrow">Hakkımda</span>
+          <h2 class="section-title" style="text-align:left; margin-bottom:1.5rem;">Merhaba, ben<br/><span style="background:linear-gradient(135deg,#6c47ff,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">bir geliştirici</span></h2>
+          <p class="about-intro">
+            <strong>3+ yıldır</strong> web ve mobil uygulama geliştiriyorum.
+            Temiz kod yazmaya, performanslı çözümler üretmeye ve
+            kullanıcıların sevdiği arayüzler tasarlamaya odaklanıyorum.
+          </p>
+          <p class="about-intro">
+            Hem frontend hem backend tarafında rahatlıkla çalışabiliyorum.
+            Yeni teknolojileri öğrenmek ve projelerimde uygulamak benim için bir tutku.
+          </p>
+
+          <div class="experience-list">
+            <div class="exp-item">
+              <div class="exp-icon">💼</div>
+              <div>
+                <div class="exp-title">Full Stack Geliştirici</div>
+                <div class="exp-sub">Freelance · 2022 – Günümüz</div>
+              </div>
+            </div>
+            <div class="exp-item">
+              <div class="exp-icon">🎓</div>
+              <div>
+                <div class="exp-title">Bilgisayar Mühendisliği</div>
+                <div class="exp-sub">Üniversite · 2019 – 2023</div>
+              </div>
+            </div>
+            <div class="exp-item">
+              <div class="exp-icon">🚀</div>
+              <div>
+                <div class="exp-title">Açık Kaynak Katkıcı</div>
+                <div class="exp-sub">GitHub · 2021 – Günümüz</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-right reveal">
+          <div class="skills-group">
+            <div class="skills-section-title">Frontend</div>
+            <div class="skills-grid">
+              <div class="skill-chip">React</div>
+              <div class="skill-chip">Next.js</div>
+              <div class="skill-chip">Vue.js</div>
+              <div class="skill-chip">TypeScript</div>
+              <div class="skill-chip">Tailwind</div>
+              <div class="skill-chip">Figma</div>
+            </div>
+          </div>
+          <div class="skills-group">
+            <div class="skills-section-title">Backend</div>
+            <div class="skills-grid">
+              <div class="skill-chip">Node.js</div>
+              <div class="skill-chip">Express</div>
+              <div class="skill-chip">PostgreSQL</div>
+              <div class="skill-chip">MongoDB</div>
+              <div class="skill-chip">Redis</div>
+              <div class="skill-chip">REST API</div>
+            </div>
+          </div>
+          <div class="skills-group">
+            <div class="skills-section-title">Araçlar</div>
+            <div class="skills-grid">
+              <div class="skill-chip">Docker</div>
+              <div class="skill-chip">Git</div>
+              <div class="skill-chip">React Native</div>
+              <div class="skill-chip">AWS</div>
+              <div class="skill-chip">CI/CD</div>
+              <div class="skill-chip">Linux</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="contact-container reveal">
+        <span class="section-eyebrow">İletişim</span>
+        <h2 class="section-title">Birlikte çalışalım</h2>
+        <p class="section-sub">Yeni bir proje mi var? Fikrinizi hayata geçirmek için hazırım.</p>
+
+        <div class="contact-card">
+          <h3>Selamlaşalım 👋</h3>
+          <p>Projen, fikrini veya sadece merhaba demek için yazabilirsin. En geç 24 saat içinde dönerim.</p>
+          <div class="contact-links">
+            <a class="contact-link primary" href="mailto:mail@example.com">
+              ✉ Mail Gönder
+            </a>
+            <a class="contact-link secondary" href="https://github.com" target="_blank">
+              GitHub
+            </a>
+            <a class="contact-link secondary" href="https://linkedin.com" target="_blank">
+              LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
 
   <footer>
-    <p>Tüm hakları saklıdır &copy; 2024 — Sevgiyle kodlandı</p>
+    <div class="footer-inner">
+      <a class="footer-logo" href="index.html">dev.portfolio</a>
+      <p class="footer-text">Tasarlandı &amp; kodlandı — 2024</p>
+    </div>
   </footer>
 
   <script src="projects.js"></script>
   <script>
-    function renderProjects(filter = 'all') {
+    // ── render project cards ──
+    function renderProjects(filter) {
       const grid = document.getElementById('projectsGrid');
       grid.innerHTML = '';
 
-      const filtered = filter === 'all'
+      const list = filter === 'all'
         ? projects
         : projects.filter(p => p.category === filter);
 
-      filtered.forEach(project => {
-        const card = document.createElement('a');
-        card.className = 'project-card';
-        card.href = `project.html?id=${project.id}`;
-        card.innerHTML = `
-          <div class="card-image-wrap">
-            <img class="card-image" src="${project.image}" alt="${project.title}" loading="lazy" />
-            <span class="card-category">${project.category}</span>
+      list.forEach((project, i) => {
+        const a = document.createElement('a');
+        a.className = 'project-card reveal';
+        a.href = `project.html?id=${project.id}`;
+        a.innerHTML = `
+          <div class="card-thumb">
+            <img src="${project.image}" alt="${project.title}" loading="lazy" />
+            <div class="card-thumb-overlay"></div>
+            <span class="card-badge">${project.category}</span>
+            <span class="card-number">0${i + 1}</span>
           </div>
           <div class="card-body">
-            <h3>${project.title}</h3>
-            <p>${project.description}</p>
-            <div class="card-tags">
-              ${project.tags.map(t => `<span class="tag">${t}</span>`).join('')}
-            </div>
+            <h3 class="card-title">${project.title}</h3>
+            <p class="card-desc">${project.description}</p>
           </div>
-          <div class="card-arrow">
-            <span>Detayları Gör</span>
-            <span>→</span>
+          <div class="card-footer">
+            <div class="card-tags">
+              ${project.tags.slice(0, 3).map(t => `<span class="tag">${t}</span>`).join('')}
+            </div>
+            <div class="card-link-icon">↗</div>
           </div>
         `;
-        grid.appendChild(card);
+        grid.appendChild(a);
       });
+
+      // trigger reveal for new cards
+      requestAnimationFrame(() => observeReveal());
     }
 
-    document.querySelectorAll('.filter-btn').forEach(btn => {
+    // ── filter buttons ──
+    document.querySelectorAll('.filter-pill').forEach(btn => {
       btn.addEventListener('click', () => {
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         renderProjects(btn.dataset.filter);
       });
     });
 
-    renderProjects();
-  </script>
+    // ── scroll reveal ──
+    function observeReveal() {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry, idx) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.classList.add('visible');
+            }, idx * 60);
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
 
+      document.querySelectorAll('.reveal:not(.visible)').forEach(el => io.observe(el));
+    }
+
+    renderProjects('all');
+    observeReveal();
+  </script>
 </body>
 </html>

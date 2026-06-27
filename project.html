@@ -3,10 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Proje Detayı — Portfolio</title>
+  <title>Proje — Portfolio</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
+  <div class="orbs" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+  </div>
 
   <header>
     <div class="header-inner">
@@ -14,79 +19,78 @@
       <nav>
         <a href="index.html#projects">Projeler</a>
         <a href="index.html#about">Hakkımda</a>
-        <a href="mailto:mail@example.com">İletişim</a>
+        <a href="index.html#contact" class="nav-cta">İletişim</a>
       </nav>
     </div>
   </header>
 
-  <div class="detail-page" id="detailPage">
-    <!-- JS ile doldurulacak -->
-  </div>
+  <main>
+    <div class="detail-page" id="detailPage"></div>
+  </main>
 
   <footer>
-    <p>Tüm hakları saklıdır &copy; 2024 — Sevgiyle kodlandı</p>
+    <div class="footer-inner">
+      <a class="footer-logo" href="index.html">dev.portfolio</a>
+      <p class="footer-text">Tasarlandı &amp; kodlandı — 2024</p>
+    </div>
   </footer>
 
   <script src="projects.js"></script>
   <script>
-    const params = new URLSearchParams(window.location.search);
-    const id = parseInt(params.get('id'), 10);
-    const idx = projects.findIndex(p => p.id === id);
+    const params  = new URLSearchParams(window.location.search);
+    const id      = parseInt(params.get('id'), 10);
+    const idx     = projects.findIndex(p => p.id === id);
     const project = projects[idx];
 
     if (!project) {
       document.getElementById('detailPage').innerHTML = `
-        <a class="back-link" href="index.html">← Geri Dön</a>
+        <a class="back-btn" href="index.html">← Geri Dön</a>
         <p style="color:var(--muted)">Proje bulunamadı.</p>
       `;
     } else {
       document.title = `${project.title} — Portfolio`;
 
-      const prev = projects[idx - 1] || null;
-      const next = projects[idx + 1] || null;
+      const prev = idx > 0 ? projects[idx - 1] : null;
+      const next = idx < projects.length - 1 ? projects[idx + 1] : null;
 
       const navHTML = `
         <div class="project-nav">
           ${prev
             ? `<a class="nav-card prev" href="project.html?id=${prev.id}">
-                <span class="nav-label">← Önceki Proje</span>
-                <span class="nav-title">${prev.title}</span>
-                <span class="nav-category">${prev.category}</span>
+                <div class="nav-dir">← Önceki</div>
+                <div class="nav-name">${prev.title}</div>
+                <div class="nav-cat">${prev.category}</div>
                </a>`
-            : `<div></div>`
-          }
+            : `<div></div>`}
           ${next
             ? `<a class="nav-card next" href="project.html?id=${next.id}">
-                <span class="nav-label">Sonraki Proje →</span>
-                <span class="nav-title">${next.title}</span>
-                <span class="nav-category">${next.category}</span>
+                <div class="nav-dir">Sonraki →</div>
+                <div class="nav-name">${next.title}</div>
+                <div class="nav-cat">${next.category}</div>
                </a>`
-            : `<div></div>`
-          }
+            : `<div></div>`}
         </div>
       `;
 
       document.getElementById('detailPage').innerHTML = `
-        <a class="back-link" href="index.html">
-          ← Tüm Projelere Dön
-        </a>
+        <a class="back-btn" href="index.html">← Tüm Projelere</a>
 
-        <div class="detail-header">
-          <span class="detail-category">${project.category}</span>
-          <h1>${project.title}</h1>
-          <div class="detail-tags">
-            ${project.tags.map(t => `<span class="tag">${t}</span>`).join('')}
-          </div>
+        <span class="detail-category">${project.category}</span>
+
+        <h1 class="detail-title">${project.title}</h1>
+
+        <div class="detail-meta">
+          ${project.tags.map(t => `<span class="tag">${t}</span>`).join('')}
         </div>
 
-        <div class="detail-links">
+        <div class="detail-links-row">
           <a class="btn btn-primary" href="${project.live}" target="_blank">Canlıya Bak ↗</a>
-          <a class="btn btn-secondary" href="${project.github}" target="_blank">GitHub →</a>
+          <a class="btn btn-ghost"   href="${project.github}" target="_blank">GitHub →</a>
         </div>
 
         <img class="detail-image" src="${project.image}" alt="${project.title}" />
 
-        <p class="detail-description">${project.longDescription}</p>
+        <p class="detail-desc">${project.longDescription}</p>
 
         <div class="detail-features">
           <h2>Özellikler</h2>
@@ -99,6 +103,5 @@
       `;
     }
   </script>
-
 </body>
 </html>
