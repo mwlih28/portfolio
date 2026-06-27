@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proje Detayı — Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a class="logo" href="index.html">dev.portfolio</a>
+      <nav>
+        <a href="index.html#projects">Projeler</a>
+        <a href="index.html#about">Hakkımda</a>
+        <a href="mailto:mail@example.com">İletişim</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="detail-page" id="detailPage">
+    <!-- JS ile doldurulacak -->
+  </div>
+
+  <footer>
+    <p>Tüm hakları saklıdır &copy; 2024 — Sevgiyle kodlandı</p>
+  </footer>
+
+  <script src="projects.js"></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const id = parseInt(params.get('id'), 10);
+    const idx = projects.findIndex(p => p.id === id);
+    const project = projects[idx];
+
+    if (!project) {
+      document.getElementById('detailPage').innerHTML = `
+        <a class="back-link" href="index.html">← Geri Dön</a>
+        <p style="color:var(--muted)">Proje bulunamadı.</p>
+      `;
+    } else {
+      document.title = `${project.title} — Portfolio`;
+
+      const prev = projects[idx - 1] || null;
+      const next = projects[idx + 1] || null;
+
+      const navHTML = `
+        <div class="project-nav">
+          ${prev
+            ? `<a class="nav-card prev" href="project.html?id=${prev.id}">
+                <span class="nav-label">← Önceki Proje</span>
+                <span class="nav-title">${prev.title}</span>
+                <span class="nav-category">${prev.category}</span>
+               </a>`
+            : `<div></div>`
+          }
+          ${next
+            ? `<a class="nav-card next" href="project.html?id=${next.id}">
+                <span class="nav-label">Sonraki Proje →</span>
+                <span class="nav-title">${next.title}</span>
+                <span class="nav-category">${next.category}</span>
+               </a>`
+            : `<div></div>`
+          }
+        </div>
+      `;
+
+      document.getElementById('detailPage').innerHTML = `
+        <a class="back-link" href="index.html">
+          ← Tüm Projelere Dön
+        </a>
+
+        <div class="detail-header">
+          <span class="detail-category">${project.category}</span>
+          <h1>${project.title}</h1>
+          <div class="detail-tags">
+            ${project.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+          </div>
+        </div>
+
+        <div class="detail-links">
+          <a class="btn btn-primary" href="${project.live}" target="_blank">Canlıya Bak ↗</a>
+          <a class="btn btn-secondary" href="${project.github}" target="_blank">GitHub →</a>
+        </div>
+
+        <img class="detail-image" src="${project.image}" alt="${project.title}" />
+
+        <p class="detail-description">${project.longDescription}</p>
+
+        <div class="detail-features">
+          <h2>Özellikler</h2>
+          <ul>
+            ${project.features.map(f => `<li>${f}</li>`).join('')}
+          </ul>
+        </div>
+
+        ${navHTML}
+      `;
+    }
+  </script>
+
+</body>
+</html>
