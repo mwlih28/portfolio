@@ -6,7 +6,7 @@ const team = [
     avatar: "M",
     color: "#a855f7",
     email: "mwlih28@gmail.com",
-    bio: "Kullanıcı arayüzü ve deneyimi konusunda tutkulu. React, Next.js ve modern CSS ile etkileyici arayüzler oluşturuyorum.",
+    bio: "React, Next.js ve modern CSS ile performanslı, erişilebilir arayüzler geliştiriyorum.",
     skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Vue.js", "Figma"],
   },
   {
@@ -16,7 +16,7 @@ const team = [
     avatar: "B",
     color: "#3b82f6",
     email: "byazar1628@gmail.com",
-    bio: "Sunucu tarafı mimarisi ve veritabanı tasarımı konusunda uzman. Ölçeklenebilir ve güvenli sistemler inşa ediyorum.",
+    bio: "API mimarisi, veritabanı tasarımı ve DevOps. Ölçeklenebilir backend sistemleri geliştiriyorum.",
     skills: ["Node.js", "PostgreSQL", "Docker", "AWS", "MongoDB", "GraphQL"],
   }
 ];
@@ -32,7 +32,7 @@ const projects = [
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80",
     github: "#",
     live: "#",
-    longDescription: "Bu proje, modern bir e-ticaret deneyimi sunmak amacıyla birlikte geliştirdik. Melih frontend arayüzünü, Berat ise backend API ve ödeme altyapısını oluşturdu. Kullanıcılar ürünleri arayabilir, filtreleyebilir, sepete ekleyebilir ve güvenli ödeme yapabilir.",
+    longDescription: "React tabanlı frontend ve Node.js backend ile geliştirilmiş e-ticaret platformu. Ürün arama, filtreleme, sepet yönetimi ve Stripe entegrasyonuyla güvenli ödeme altyapısı içerir. Melih arayüzü, Berat API ve ödeme sistemini geliştirdi.",
     features: [
       "Kullanıcı kimlik doğrulama ve yetkilendirme",
       "Gerçek zamanlı stok takibi",
@@ -51,7 +51,7 @@ const projects = [
     image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&q=80",
     github: "#",
     live: "#",
-    longDescription: "Melih'in geliştirdiği kişisel ve ekip görevlerini organize etmek için mobil uygulama. Sürükle bırak özelliğiyle görevleri kolayca yönetebilir, takım üyeleriyle işbirliği yapabilirsiniz.",
+    longDescription: "React Native ile geliştirilmiş görev yönetim uygulaması. Kanban board üzerinde sürükle-bırak ile görev taşıma, takvim entegrasyonu ve ekip işbirliği özellikleri sunuyor.",
     features: [
       "Kanban board görünümü",
       "Sürükle bırak ile görev taşıma",
@@ -70,7 +70,7 @@ const projects = [
     image: "https://images.unsplash.com/photo-1504608524841-42584120d693?w=800&q=80",
     github: "#",
     live: "#",
-    longDescription: "Melih'in tasarladığı ve geliştirdiği, kullanıcı konumuna göre anlık hava durumu ve haftalık tahminleri gösteren modern bir web uygulaması. Güzel grafikler ve animasyonlarla hava verilerini görselleştirir.",
+    longDescription: "OpenWeather API ile entegre, konum tabanlı hava durumu uygulaması. GPS ile otomatik konum tespiti, 7 günlük tahmin, interaktif Chart.js grafikleri ve çift tema desteği içerir.",
     features: [
       "GPS ile otomatik konum tespiti",
       "7 günlük hava tahmini",
@@ -89,7 +89,7 @@ const projects = [
     image: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&q=80",
     github: "#",
     live: "#",
-    longDescription: "İkimizin birlikte geliştirdiği, yazarlar için tasarlanmış bir blog platformu. Melih frontend ve markdown editörünü, Berat veritabanı ve API tasarımını üstlendi. Kategori yönetimi, yorum sistemi ve okuyucu analitiği sunar.",
+    longDescription: "Next.js ve PostgreSQL tabanlı blog platformu. Markdown editörü, SEO optimizasyonu, kategori/etiket yönetimi, yorum sistemi ve ziyaretçi analitiği içerir. Melih frontend tarafını, Berat veritabanı ve API katmanını geliştirdi.",
     features: [
       "Markdown editörü",
       "SEO optimizasyonu",
@@ -108,7 +108,7 @@ const projects = [
     image: "https://images.unsplash.com/photo-1640340434855-6084b1f4901c?w=800&q=80",
     github: "#",
     live: "#",
-    longDescription: "Berat'in geliştirdiği kripto para yatırımcıları için kapsamlı takip uygulaması. WebSocket ile anlık fiyat güncellemeleri, portföy analizi ve özelleştirilebilir fiyat alarmları içerir.",
+    longDescription: "WebSocket ile anlık fiyat akışı sağlayan kripto takip uygulaması. Portföy yönetimi, özelleştirilebilir fiyat alarmları ve Chart.js ile tarihi veri grafikleri sunuyor.",
     features: [
       "Gerçek zamanlı fiyat güncellemeleri",
       "Portföy yönetimi",
@@ -127,7 +127,7 @@ const projects = [
     image: "https://images.unsplash.com/photo-1611606063065-ee7946f0787a?w=800&q=80",
     github: "#",
     live: "#",
-    longDescription: "Birlikte geliştirdiğimiz modern ve hızlı bir mesajlaşma uygulaması. Melih arayüz tasarımı ve gerçek zamanlı UI güncellemelerini, Berat ise Socket.io altyapısını ve mesaj veritabanını oluşturdu.",
+    longDescription: "Socket.io tabanlı gerçek zamanlı mesajlaşma uygulaması. Özel ve grup sohbetleri, dosya paylaşımı, okundu bilgisi ve çevrimiçi durum göstergesi içerir. Melih arayüzü, Berat Socket.io altyapısını geliştirdi.",
     features: [
       "Gerçek zamanlı mesajlaşma",
       "Grup sohbetleri",
