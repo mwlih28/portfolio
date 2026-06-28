@@ -43,9 +43,19 @@
           <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         </button>
         <a href="index.html#contact" class="contact-btn">İletişim</a>
+        <button class="hamburger" id="hamburger" aria-label="Menü">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </nav>
   </header>
+
+  <!-- Mobile Menu -->
+  <nav class="mobile-menu" id="mobileMenu">
+    <a href="index.html#projects" class="mobile-link">Projeler</a>
+    <a href="index.html#team" class="mobile-link">Ekip</a>
+    <a href="index.html#contact" class="mobile-link mobile-contact">İletişim</a>
+  </nav>
 
   <main>
     <div class="detail" id="dp"></div>
@@ -61,26 +71,32 @@
   <script src="projects.js"></script>
   <script>
   (() => {
+    const isMobile = window.matchMedia('(max-width:640px)').matches;
+
     // ─── PRELOADER ───
     window.addEventListener('load', () => {
       setTimeout(() => document.getElementById('preloader').classList.add('done'), 400);
     });
 
-    // ─── CURSOR GLOW ───
-    const glow = document.getElementById('cursorGlow');
-    let glowX = 0, glowY = 0, curX = 0, curY = 0;
-    document.addEventListener('mousemove', e => {
-      glowX = e.clientX; glowY = e.clientY;
-      glow.classList.add('active');
-    });
-    document.addEventListener('mouseleave', () => glow.classList.remove('active'));
-    (function animateGlow() {
-      curX += (glowX - curX) * .12;
-      curY += (glowY - curY) * .12;
-      glow.style.left = curX + 'px';
-      glow.style.top = curY + 'px';
-      requestAnimationFrame(animateGlow);
-    })();
+    // ─── CURSOR GLOW (desktop only) ───
+    if (!isMobile) {
+      const glow = document.getElementById('cursorGlow');
+      let glowX = 0, glowY = 0, curX = 0, curY = 0, glowActive = false, rafId = 0;
+      function animateGlow() {
+        curX += (glowX - curX) * .12;
+        curY += (glowY - curY) * .12;
+        glow.style.left = curX + 'px';
+        glow.style.top = curY + 'px';
+        if (glowActive) rafId = requestAnimationFrame(animateGlow);
+      }
+      document.addEventListener('mousemove', e => {
+        glowX = e.clientX; glowY = e.clientY;
+        if (!glowActive) { glowActive = true; glow.classList.add('active'); rafId = requestAnimationFrame(animateGlow); }
+      });
+      document.addEventListener('mouseleave', () => {
+        glowActive = false; glow.classList.remove('active'); cancelAnimationFrame(rafId);
+      });
+    }
 
     // ─── PAGE TRANSITIONS ───
     const ptEl = document.getElementById('pageTransition');
@@ -94,11 +110,34 @@
       setTimeout(() => { window.location.href = href; }, 450);
     });
 
+    // ─── HAMBURGER MENU ───
+    const burger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    burger.addEventListener('click', () => {
+      burger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+    });
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        burger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
     // ─── SCROLL PROGRESS ───
     const progressBar = document.getElementById('scrollProgress');
+    let scrollTicking = false;
     window.addEventListener('scroll', () => {
-      const h = document.documentElement.scrollHeight - window.innerHeight;
-      progressBar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+      if (!scrollTicking) {
+        requestAnimationFrame(() => {
+          const h = document.documentElement.scrollHeight - window.innerHeight;
+          progressBar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+          scrollTicking = false;
+        });
+        scrollTicking = true;
+      }
     }, { passive: true });
 
     // ─── THEME ───

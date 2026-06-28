@@ -198,6 +198,40 @@ header{
 .nav-right .contact-btn:hover{background:#e5e5e4}
 .nav-right .contact-btn.active::after{display:none}
 
+/* ── HAMBURGER ── */
+.hamburger{
+  display:none;width:34px;height:34px;border-radius:10px;
+  background:rgba(255,255,255,.06);border:1px solid var(--bdr);
+  cursor:pointer;padding:0;position:relative;z-index:110;
+  flex-direction:column;align-items:center;justify-content:center;gap:4px;
+}
+.hamburger span{
+  display:block;width:16px;height:1.5px;background:var(--white);border-radius:2px;
+  transition:transform .3s var(--ease),opacity .2s;
+}
+.hamburger.open span:nth-child(1){transform:translateY(5.5px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-5.5px) rotate(-45deg)}
+
+/* ── MOBILE MENU ── */
+.mobile-menu{
+  display:none;position:fixed;inset:0;z-index:105;
+  background:var(--bg);
+  flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;
+  opacity:0;visibility:hidden;transition:opacity .3s var(--ease),visibility .3s;
+}
+.mobile-menu.open{opacity:1;visibility:visible}
+.mobile-menu a{
+  color:var(--white);text-decoration:none;font-size:1.5rem;font-weight:700;
+  letter-spacing:-.02em;padding:.5rem 1rem;border-radius:12px;
+  transition:color .15s,background .15s;
+}
+.mobile-menu a:hover{background:rgba(255,255,255,.06)}
+.mobile-menu .mobile-contact{
+  margin-top:1rem;background:var(--white);color:var(--bg);
+  padding:.6rem 1.5rem;border-radius:12px;font-size:1rem;font-weight:600;
+}
+
 /* ── HERO ── */
 .hero{
   min-height:100vh;display:flex;flex-direction:column;
@@ -369,7 +403,7 @@ header{
 }
 .card:hover .card-spotlight{opacity:1}
 
-/* animated gradient border */
+/* animated gradient border — only runs on hover */
 .card::before{
   content:'';position:absolute;inset:-1px;z-index:0;
   border-radius:calc(var(--r) + 1px);padding:1px;
@@ -377,9 +411,9 @@ header{
   -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
   -webkit-mask-composite:xor;mask-composite:exclude;
   opacity:0;transition:opacity .4s;pointer-events:none;
-  animation:rotateAngle 3s linear infinite;
+  animation:none;
 }
-.card:hover::before{opacity:1}
+.card:hover::before{opacity:1;animation:rotateAngle 3s linear infinite}
 
 .card-img{position:absolute;inset:0;z-index:0}
 .card-img img{
@@ -580,7 +614,13 @@ footer{border-top:1px solid var(--bdr);padding:1.75rem 2rem}
 }
 @media(max-width:640px){
   header{top:8px;width:calc(100% - 1rem)}
-  .nav-bar{padding:.4rem .4rem .4rem 1rem}
+  .nav-bar{padding:.4rem .4rem .4rem 1rem;backdrop-filter:none;background:rgba(12,12,14,.9)}
+  [data-theme="light"] .nav-bar{background:rgba(245,245,240,.92);backdrop-filter:none}
+  .hamburger{display:flex}
+  .mobile-menu{display:flex}
+  .nav-right a:not(.contact-btn){display:none}
+  .nav-right .contact-btn{display:none}
+  .theme-toggle{display:flex}
   .bento{grid-template-columns:1fr}
   .bento .card:nth-child(n){grid-column:span 1;grid-row:span 1;min-height:300px}
   .hero{padding:5rem 1.25rem 3rem}
@@ -588,11 +628,9 @@ footer{border-top:1px solid var(--bdr);padding:1.75rem 2rem}
   #projects,#team,#contact{padding:4.5rem 0}
   .hero-stats{flex-wrap:wrap}
   .st{flex:1;min-width:100px;padding:1rem 1.25rem}
-  .cta-card{padding:2.5rem 1.5rem}
+  .cta-card{padding:2.5rem 1.5rem;backdrop-filter:none}
   .cta-card h3{font-size:1.5rem}
   .pnav{grid-template-columns:1fr}
-  .nav-right a:not(.contact-btn):not(.theme-toggle){display:none}
-  .theme-toggle{display:flex}
   .foot-row{flex-direction:column;gap:.75rem;text-align:center}
   .team-grid{grid-template-columns:1fr}
   .about-story{grid-template-columns:1fr}
@@ -601,4 +639,11 @@ footer{border-top:1px solid var(--bdr);padding:1.75rem 2rem}
   .filter-row{align-items:stretch}
   .sec-top{flex-direction:column;align-items:stretch}
   .cursor-glow{display:none}
+  .card-spotlight{display:none}
+  .card::before{display:none}
+  .duo-card{backdrop-filter:none}
+  .hero-stats{backdrop-filter:none}
+  .story-block{backdrop-filter:none}
+  .team-card{backdrop-filter:none}
+  .sk-chip{backdrop-filter:none}
 }

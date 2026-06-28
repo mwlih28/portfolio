@@ -45,9 +45,19 @@
           <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         </button>
         <a href="#contact" class="contact-btn">İletişim</a>
+        <button class="hamburger" id="hamburger" aria-label="Menü">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </nav>
   </header>
+
+  <!-- Mobile Menu -->
+  <nav class="mobile-menu" id="mobileMenu">
+    <a href="#projects" class="mobile-link">Projeler</a>
+    <a href="#team" class="mobile-link">Ekip</a>
+    <a href="#contact" class="mobile-link mobile-contact">İletişim</a>
+  </nav>
 
   <main>
 
@@ -257,26 +267,32 @@
   <script src="projects.js"></script>
   <script>
   (() => {
+    const isMobile = window.matchMedia('(max-width:640px)').matches;
+
     // ─── PRELOADER ───
     window.addEventListener('load', () => {
       setTimeout(() => document.getElementById('preloader').classList.add('done'), 600);
     });
 
-    // ─── CURSOR GLOW ───
-    const glow = document.getElementById('cursorGlow');
-    let glowX = 0, glowY = 0, curX = 0, curY = 0;
-    document.addEventListener('mousemove', e => {
-      glowX = e.clientX; glowY = e.clientY;
-      glow.classList.add('active');
-    });
-    document.addEventListener('mouseleave', () => glow.classList.remove('active'));
-    (function animateGlow() {
-      curX += (glowX - curX) * .12;
-      curY += (glowY - curY) * .12;
-      glow.style.left = curX + 'px';
-      glow.style.top = curY + 'px';
-      requestAnimationFrame(animateGlow);
-    })();
+    // ─── CURSOR GLOW (desktop only) ───
+    if (!isMobile) {
+      const glow = document.getElementById('cursorGlow');
+      let glowX = 0, glowY = 0, curX = 0, curY = 0, glowActive = false, rafId = 0;
+      function animateGlow() {
+        curX += (glowX - curX) * .12;
+        curY += (glowY - curY) * .12;
+        glow.style.left = curX + 'px';
+        glow.style.top = curY + 'px';
+        if (glowActive) rafId = requestAnimationFrame(animateGlow);
+      }
+      document.addEventListener('mousemove', e => {
+        glowX = e.clientX; glowY = e.clientY;
+        if (!glowActive) { glowActive = true; glow.classList.add('active'); rafId = requestAnimationFrame(animateGlow); }
+      });
+      document.addEventListener('mouseleave', () => {
+        glowActive = false; glow.classList.remove('active'); cancelAnimationFrame(rafId);
+      });
+    }
 
     // ─── PAGE TRANSITIONS ───
     const ptEl = document.getElementById('pageTransition');
@@ -290,45 +306,59 @@
       setTimeout(() => { window.location.href = href; }, 450);
     });
 
+    // ─── HAMBURGER MENU ───
+    const burger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    burger.addEventListener('click', () => {
+      burger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+    });
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        burger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
     // ─── SCROLL PROGRESS BAR ───
     const progressBar = document.getElementById('scrollProgress');
-    function updateProgress() {
-      const h = document.documentElement.scrollHeight - window.innerHeight;
-      const pct = h > 0 ? (window.scrollY / h) * 100 : 0;
-      progressBar.style.width = pct + '%';
-    }
-
-    // ─── BACK TO TOP ───
     const btt = document.getElementById('btt');
     const bttCircle = document.querySelector('.btt-progress');
     const circumference = 2 * Math.PI * 16;
-    function updateBTT() {
-      const h = document.documentElement.scrollHeight - window.innerHeight;
-      const pct = h > 0 ? window.scrollY / h : 0;
-      bttCircle.style.strokeDashoffset = circumference * (1 - pct);
-      btt.classList.toggle('show', window.scrollY > 400);
-    }
-    btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-    // ─── ACTIVE NAV INDICATOR ───
     const navLinks = document.querySelectorAll('.nav-right a[href^="#"]');
     const sections = [...navLinks].map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
-    function updateActiveNav() {
-      let current = '';
-      sections.forEach(sec => {
-        if (window.scrollY >= sec.offsetTop - 200) current = sec.id;
-      });
-      navLinks.forEach(a => {
-        a.classList.toggle('active', a.getAttribute('href') === '#' + current);
-      });
-    }
+    const mesh = document.querySelector('.mesh');
+    let scrollTicking = false;
 
-    // Combined scroll handler
-    window.addEventListener('scroll', () => { updateProgress(); updateBTT(); updateActiveNav(); }, { passive: true });
+    window.addEventListener('scroll', () => {
+      if (!scrollTicking) {
+        requestAnimationFrame(() => {
+          const h = document.documentElement.scrollHeight - window.innerHeight;
+          const pct = h > 0 ? window.scrollY / h : 0;
+
+          progressBar.style.width = (pct * 100) + '%';
+
+          bttCircle.style.strokeDashoffset = circumference * (1 - pct);
+          btt.classList.toggle('show', window.scrollY > 400);
+
+          let current = '';
+          sections.forEach(sec => { if (window.scrollY >= sec.offsetTop - 200) current = sec.id; });
+          navLinks.forEach(a => { a.classList.toggle('active', a.getAttribute('href') === '#' + current); });
+
+          if (!isMobile) mesh.style.transform = `translateY(${window.scrollY * 0.15}px)`;
+
+          scrollTicking = false;
+        });
+        scrollTicking = true;
+      }
+    }, { passive: true });
+
+    btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
     // ─── HERO WORD REVEAL ───
-    const words = document.querySelectorAll('.word-inner');
-    words.forEach((w, i) => {
+    document.querySelectorAll('.word-inner').forEach((w, i) => {
       setTimeout(() => w.classList.add('show'), 200 + i * 120);
     });
 
@@ -394,41 +424,37 @@
     }, { threshold: .5 });
     statsObs.observe(document.getElementById('heroStats'));
 
-    // ─── MAGNETIC BUTTONS ───
-    document.querySelectorAll('.magnetic').forEach(btn => {
-      btn.addEventListener('mousemove', e => {
-        const r = btn.getBoundingClientRect();
-        const x = e.clientX - r.left - r.width / 2;
-        const y = e.clientY - r.top - r.height / 2;
-        btn.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px)`;
+    // ─── MAGNETIC BUTTONS (desktop only) ───
+    if (!isMobile) {
+      document.querySelectorAll('.magnetic').forEach(btn => {
+        btn.addEventListener('mousemove', e => {
+          const r = btn.getBoundingClientRect();
+          const x = e.clientX - r.left - r.width / 2;
+          const y = e.clientY - r.top - r.height / 2;
+          btn.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px)`;
+        });
+        btn.addEventListener('mouseleave', () => {
+          btn.style.transform = '';
+          btn.style.transition = 'transform .4s cubic-bezier(.22,1,.36,1)';
+          setTimeout(() => btn.style.transition = '', 400);
+        });
       });
-      btn.addEventListener('mouseleave', () => {
-        btn.style.transform = '';
-        btn.style.transition = 'transform .4s cubic-bezier(.22,1,.36,1)';
-        setTimeout(() => btn.style.transition = '', 400);
-      });
-    });
 
-    // ─── 3D TILT ON TEAM CARDS ───
-    document.querySelectorAll('.tilt-card').forEach(card => {
-      card.addEventListener('mousemove', e => {
-        const r = card.getBoundingClientRect();
-        const x = (e.clientX - r.left) / r.width - .5;
-        const y = (e.clientY - r.top) / r.height - .5;
-        card.style.transform = `perspective(800px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateY(-4px)`;
+      // ─── 3D TILT ON TEAM CARDS ───
+      document.querySelectorAll('.tilt-card').forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const r = card.getBoundingClientRect();
+          const x = (e.clientX - r.left) / r.width - .5;
+          const y = (e.clientY - r.top) / r.height - .5;
+          card.style.transform = `perspective(800px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateY(-4px)`;
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = '';
+          card.style.transition = 'transform .5s cubic-bezier(.22,1,.36,1), border-color .25s, box-shadow .25s';
+          setTimeout(() => card.style.transition = '', 500);
+        });
       });
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = '';
-        card.style.transition = 'transform .5s cubic-bezier(.22,1,.36,1), border-color .25s, box-shadow .25s';
-        setTimeout(() => card.style.transition = '', 500);
-      });
-    });
-
-    // ─── PARALLAX ON MESH BG ───
-    const mesh = document.querySelector('.mesh');
-    window.addEventListener('scroll', () => {
-      mesh.style.transform = `translateY(${window.scrollY * 0.15}px)`;
-    }, { passive: true });
+    }
 
     // ─── THEME TOGGLE ───
     const toggle = document.getElementById('themeToggle');
@@ -456,16 +482,15 @@
     let catFilter = 'all';
     let authFilter = 'all';
 
-    // ─── CARD SPOTLIGHT ───
+    // ─── CARD SPOTLIGHT (desktop only) ───
     function initSpotlight() {
+      if (isMobile) return;
       document.querySelectorAll('.card').forEach(card => {
         const spotlight = card.querySelector('.card-spotlight');
         if (!spotlight) return;
         card.addEventListener('mousemove', e => {
           const r = card.getBoundingClientRect();
-          const x = e.clientX - r.left;
-          const y = e.clientY - r.top;
-          spotlight.style.background = `radial-gradient(400px circle at ${x}px ${y}px, rgba(168,85,247,.07), transparent 50%)`;
+          spotlight.style.background = `radial-gradient(400px circle at ${e.clientX - r.left}px ${e.clientY - r.top}px, rgba(168,85,247,.07), transparent 50%)`;
         });
       });
     }
