@@ -10,6 +10,20 @@
 </head>
 <body>
 
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-inner">
+      <div class="preloader-logo">M&B</div>
+      <div class="preloader-bar"><div class="preloader-fill"></div></div>
+    </div>
+  </div>
+
+  <!-- Page Transition -->
+  <div class="page-transition" id="pageTransition"></div>
+
+  <!-- Cursor Glow -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
   <!-- Scroll progress -->
   <div class="scroll-progress" id="scrollProgress"></div>
 
@@ -94,6 +108,11 @@
       </div>
 
     </section>
+
+    <!-- TECH MARQUEE -->
+    <div class="marquee" id="marquee">
+      <div class="marquee-track" id="marqueeTrack"></div>
+    </div>
 
     <!-- PROJECTS -->
     <section id="projects">
@@ -239,6 +258,39 @@
   <script src="projects.js"></script>
   <script>
   (() => {
+    // ─── PRELOADER ───
+    window.addEventListener('load', () => {
+      setTimeout(() => document.getElementById('preloader').classList.add('done'), 600);
+    });
+
+    // ─── CURSOR GLOW ───
+    const glow = document.getElementById('cursorGlow');
+    let glowX = 0, glowY = 0, curX = 0, curY = 0;
+    document.addEventListener('mousemove', e => {
+      glowX = e.clientX; glowY = e.clientY;
+      glow.classList.add('active');
+    });
+    document.addEventListener('mouseleave', () => glow.classList.remove('active'));
+    (function animateGlow() {
+      curX += (glowX - curX) * .12;
+      curY += (glowY - curY) * .12;
+      glow.style.left = curX + 'px';
+      glow.style.top = curY + 'px';
+      requestAnimationFrame(animateGlow);
+    })();
+
+    // ─── PAGE TRANSITIONS ───
+    const ptEl = document.getElementById('pageTransition');
+    document.addEventListener('click', e => {
+      const link = e.target.closest('a[href]');
+      if (!link) return;
+      const href = link.getAttribute('href');
+      if (!href || href.startsWith('#') || href.startsWith('mailto:') || link.target === '_blank') return;
+      e.preventDefault();
+      ptEl.classList.add('enter');
+      setTimeout(() => { window.location.href = href; }, 450);
+    });
+
     // ─── SCROLL PROGRESS BAR ───
     const progressBar = document.getElementById('scrollProgress');
     function updateProgress() {
@@ -259,8 +311,21 @@
     }
     btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
+    // ─── ACTIVE NAV INDICATOR ───
+    const navLinks = document.querySelectorAll('.nav-right a[href^="#"]');
+    const sections = [...navLinks].map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    function updateActiveNav() {
+      let current = '';
+      sections.forEach(sec => {
+        if (window.scrollY >= sec.offsetTop - 200) current = sec.id;
+      });
+      navLinks.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+      });
+    }
+
     // Combined scroll handler
-    window.addEventListener('scroll', () => { updateProgress(); updateBTT(); }, { passive: true });
+    window.addEventListener('scroll', () => { updateProgress(); updateBTT(); updateActiveNav(); }, { passive: true });
 
     // ─── HERO WORD REVEAL ───
     const words = document.querySelectorAll('.word-inner');
@@ -285,6 +350,26 @@
       }
     }
     setTimeout(typeRole, 1200);
+
+    // ─── MARQUEE ───
+    const techs = ['React', 'Next.js', 'TypeScript', 'Vue.js', 'Node.js', 'PostgreSQL', 'MongoDB', 'Docker', 'AWS', 'GraphQL', 'Tailwind CSS', 'Figma', 'Redis', 'Firebase', 'Socket.io', 'React Native'];
+    const marqueeTrack = document.getElementById('marqueeTrack');
+    function buildMarqueeSet() {
+      const set = document.createElement('div');
+      set.className = 'marquee-set';
+      techs.forEach(t => {
+        const chip = document.createElement('span');
+        chip.className = 'marquee-chip';
+        chip.textContent = t;
+        set.appendChild(chip);
+        const dot = document.createElement('span');
+        dot.className = 'marquee-dot';
+        set.appendChild(dot);
+      });
+      return set;
+    }
+    marqueeTrack.appendChild(buildMarqueeSet());
+    marqueeTrack.appendChild(buildMarqueeSet());
 
     // ─── COUNTER ANIMATION ───
     const statsObs = new IntersectionObserver(es => {
@@ -372,6 +457,20 @@
     let catFilter = 'all';
     let authFilter = 'all';
 
+    // ─── CARD SPOTLIGHT ───
+    function initSpotlight() {
+      document.querySelectorAll('.card').forEach(card => {
+        const spotlight = card.querySelector('.card-spotlight');
+        if (!spotlight) return;
+        card.addEventListener('mousemove', e => {
+          const r = card.getBoundingClientRect();
+          const x = e.clientX - r.left;
+          const y = e.clientY - r.top;
+          spotlight.style.background = `radial-gradient(400px circle at ${x}px ${y}px, rgba(168,85,247,.07), transparent 50%)`;
+        });
+      });
+    }
+
     function render() {
       const g = document.getElementById('grid');
       g.innerHTML = '';
@@ -395,6 +494,7 @@
         ).join('');
 
         a.innerHTML = `
+          <div class="card-spotlight"></div>
           <div class="card-img"><img src="${p.image}" alt="${p.title}" loading="lazy"></div>
           <div class="card-content">
             <span class="card-cat">${p.category}</span>
@@ -411,6 +511,7 @@
         g.appendChild(a);
       });
       observe();
+      initSpotlight();
     }
 
     document.querySelectorAll('.pill:not(.apill)').forEach(b => {

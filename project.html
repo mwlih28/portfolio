@@ -1,13 +1,30 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Proje — M&B Studio</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23a855f7'/><text x='50%25' y='55%25' text-anchor='middle' dy='.35em' font-size='12' fill='white' font-weight='bold'>M%26A</text></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23a855f7'/><text x='50%25' y='55%25' text-anchor='middle' dy='.35em' font-size='12' fill='white' font-weight='bold'>M%26B</text></svg>" />
 </head>
 <body>
+
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-inner">
+      <div class="preloader-logo">M&B</div>
+      <div class="preloader-bar"><div class="preloader-fill"></div></div>
+    </div>
+  </div>
+
+  <!-- Page Transition -->
+  <div class="page-transition" id="pageTransition"></div>
+
+  <!-- Cursor Glow -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- Scroll progress -->
+  <div class="scroll-progress" id="scrollProgress"></div>
 
   <div class="mesh" aria-hidden="true"></div>
   <div class="noise" aria-hidden="true"></div>
@@ -21,6 +38,10 @@
       <div class="nav-right">
         <a href="index.html#projects">Projeler</a>
         <a href="index.html#team">Ekip</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Tema değiştir">
+          <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
         <a href="index.html#contact" class="contact-btn">İletişim</a>
       </div>
     </nav>
@@ -40,6 +61,58 @@
   <script src="projects.js"></script>
   <script>
   (() => {
+    // ─── PRELOADER ───
+    window.addEventListener('load', () => {
+      setTimeout(() => document.getElementById('preloader').classList.add('done'), 400);
+    });
+
+    // ─── CURSOR GLOW ───
+    const glow = document.getElementById('cursorGlow');
+    let glowX = 0, glowY = 0, curX = 0, curY = 0;
+    document.addEventListener('mousemove', e => {
+      glowX = e.clientX; glowY = e.clientY;
+      glow.classList.add('active');
+    });
+    document.addEventListener('mouseleave', () => glow.classList.remove('active'));
+    (function animateGlow() {
+      curX += (glowX - curX) * .12;
+      curY += (glowY - curY) * .12;
+      glow.style.left = curX + 'px';
+      glow.style.top = curY + 'px';
+      requestAnimationFrame(animateGlow);
+    })();
+
+    // ─── PAGE TRANSITIONS ───
+    const ptEl = document.getElementById('pageTransition');
+    document.addEventListener('click', e => {
+      const link = e.target.closest('a[href]');
+      if (!link) return;
+      const href = link.getAttribute('href');
+      if (!href || href.startsWith('mailto:') || link.target === '_blank') return;
+      e.preventDefault();
+      ptEl.classList.add('enter');
+      setTimeout(() => { window.location.href = href; }, 450);
+    });
+
+    // ─── SCROLL PROGRESS ───
+    const progressBar = document.getElementById('scrollProgress');
+    window.addEventListener('scroll', () => {
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      progressBar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+    }, { passive: true });
+
+    // ─── THEME ───
+    const toggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+    const saved = localStorage.getItem('theme');
+    if (saved) html.dataset.theme = saved;
+    toggle.addEventListener('click', () => {
+      const next = html.dataset.theme === 'dark' ? 'light' : 'dark';
+      html.dataset.theme = next;
+      localStorage.setItem('theme', next);
+    });
+
+    // ─── PROJECT DETAIL ───
     const id  = parseInt(new URLSearchParams(location.search).get('id'), 10);
     const idx = projects.findIndex(p => p.id === id);
     const p   = projects[idx];
